@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import path from 'path'
+import path from 'node:path'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
@@ -8,15 +9,20 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/packages/main.ts'),
       name: 'ByteUi',
-      fileName: (format) => `lib.${format}.js`
+      fileName: format => `lib.${format}.js`,
     },
     rollupOptions: {
       external: ['vue'],
       output: {
         globals: {
-          vue: 'Vue'
-        }
-      }
-    }
-  }
+          vue: 'Vue',
+        },
+      },
+    },
+  },
+  esbuild: {
+    jsx: 'preserve',
+    jsxFactory: 'h',
+    jsxFragment: 'Fragment',
+  },
 })
