@@ -8,7 +8,7 @@
 <script setup lang="ts">
 
 </script>
-<style scoped>
+<style lang="less" scoped>
 .el-button{
     display: inline-block;
     line-height: 1;
@@ -26,5 +26,8 @@
     padding: 12px 20px;
     font-size: 14px;
     border-radius: 4px;
+    span{
+        color: black;
+    }
 }
 </style>
