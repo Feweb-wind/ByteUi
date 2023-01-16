@@ -1,0 +1,10 @@
+.vscode/
+node_modules/
+public/
+src/
+.gitignore
+index.html
+package-lock.json
+tsconfig.node.json
+tsconfig.json
+vite.config.ts
