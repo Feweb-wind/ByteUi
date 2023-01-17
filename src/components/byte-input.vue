@@ -88,8 +88,9 @@ const emit = defineEmits<{
 }>()
 //实现双向绑定
 const updateModelValue = (e:Event)=>{
-  if(e.target!==null){
-    emit('update:modelValue',e.target.value)
+  let target:EventTarget|null = e.target 
+  if(target!==null){
+    emit('update:modelValue',target.value)
   }
 }
 //判断后置图标是否显示
@@ -99,7 +100,7 @@ const suffix = computed(
   }
 )
 //清空input区域，仅当clearable props为true时 dom才被渲染出来
-let myinput = ref(null) //input实例
+let myinput = ref<HTMLInputElement|null>(null) //input实例
 onMounted(()=>{
   console.log(myinput.value)
 })
