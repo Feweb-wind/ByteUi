@@ -1,26 +1,10 @@
 <template>
-  <!--  主要展示select的基本用法 && input框的size -->
-  <byte-select
-      placeholder="Select"
-      :options="options"
-      placement="bottom"
-  >
-
-  </byte-select>
-
-  <br>
-  <br>
-
-  <byte-tag>default</byte-tag><br>
-  <byte-tag type="success">success</byte-tag><br>
-  <byte-tag type="info">info</byte-tag><br>
-  <byte-tag type="warning">warning</byte-tag><br>
-  <byte-tag type="danger">danger</byte-tag><br>
+<!--  主要展示select的基本用法 && input框的size -->
+<byte-select placeholder="Select"></byte-select>
 </template>
 
 <script lang="ts" setup>
 import ByteSelect from "@/components/byte-select/byte-select.vue";
-import ByteTag from "@/components/byte-tag/byte-tag.vue"
 import { ref } from 'vue';
 
 const value = ref('');

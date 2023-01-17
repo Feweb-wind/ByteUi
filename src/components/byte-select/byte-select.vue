@@ -23,7 +23,7 @@
 
 <script lang="ts">
 export default {
-  name: "ByteSelect"
+  name: "byte-select"
 }
 </script>
 
@@ -49,7 +49,11 @@ const props = defineProps({
     default: 'value'
   },
   placeholder: String,
-  modelVal: String
+  modelVal: String,
+  placement: {
+    type: String,
+    default: "bottom"
+  }
 });
 
 // positionShow: 是否显示下拉选项
@@ -98,13 +102,13 @@ const changeOption = (item: Object, index: number) => {
 
 <style lang="less" scoped>
 
-//.fade-enter-active, .fade-leave-active {
-//  transition: opacity 0.5s ease;
-//}
-//
-//.fade-enter-from, .fade-leave-to {
-//  opacity: 0;
-//}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
 
 .byte-select {
   display: inline-block;

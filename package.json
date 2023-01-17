@@ -20,6 +20,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.6",
     "vite-plugin-md": "^0.21.5",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
