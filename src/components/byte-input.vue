@@ -8,6 +8,7 @@
           pre
         </span>
         <input
+        ref="myinput"
         :class="[disabled?'is-disabled':'' , prefixIcon?'pre-inp':'', suffixIcon?'suf-inp':'']"
         :type="type"
         :value="modelValue"
@@ -17,10 +18,12 @@
         :readonly="readonly"
         :placeholder="placeholder"
         :showWordLimit="showWordLimit" 
-        @input="updateModelValue">
+        @input="updateModelValue" >
         <!-- suffix-icon -->
-        <span v-if="suffixIcon" class="suffix-icon">
-          suf
+        <span v-if="suffix" class="suffix-icon">
+          <template v-if="clearable">
+            <span @click="clearInput">x</span>
+          </template>
         </span>
       </div>
     </template>
@@ -28,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref ,computed,onMounted} from 'vue'
 //props
 const props = defineProps({
   //原生属性
@@ -58,6 +61,10 @@ const props = defineProps({
     type:Boolean,
     default:false
   },
+  clearable:{
+    type:Boolean,
+    default:false
+  },
   showPassword:{//是否切换密码图标
     type:Boolean,
     defalut:true
@@ -76,10 +83,31 @@ const emit = defineEmits<{
 }>()
 //实现双向绑定
 const updateModelValue = (e:Event)=>{
+  console.log(2)
+  if(e.target!==null){
     emit('update:modelValue',e.target.value)
+  }
 }
-
-
+//判断后置图标是否显示
+const suffix = computed(
+  ()=>{
+    return props.suffixIcon || props.clearable
+  }
+)
+//清空input区域，仅当clearable props为true时 dom才被渲染出来
+let myinput = ref(null) //input实例
+onMounted(()=>{
+  console.log(myinput.value)
+})
+const clearInput = ()=>{
+  console.log(1)
+  if(myinput.value!==null){
+    myinput.value.value = ''
+  }
+}
+const test = ()=>{
+  console.log('test')
+}
 </script>
 
 <style lang="less">
@@ -108,10 +136,12 @@ const updateModelValue = (e:Event)=>{
       text-align: center;
       color: #c0c4cc;
       transition: all .3s;
-      pointer-events: none;
+      pointer-events: auto;
+      cursor: pointer;
       //以下代码测试用
       display: flex;
       align-items: center;
+      z-index: 10;
     }
     .prefix-icon{
       left: 5px;
@@ -135,6 +165,12 @@ const updateModelValue = (e:Event)=>{
       padding: 0 15px;
       transition: border-color .2s cubic-bezier(.645,.045,.355,1);
       width: 100%;
+      pointer-event: auto;
+      //选中焦点边框样式
+      &:focus{
+        outline: none;
+        border-color: #409eff;
+      }
     }
     //有prefixicon时input要做出的调整
     .pre-inp{
