@@ -1,6 +1,7 @@
 <template>
   <div class="byte-input" :class="size">
     <input
+    :class="disabled?'is-disabled':''"
     :type="type"
     :value="modelValue"
     :disabled="disabled"
@@ -10,7 +11,6 @@
     :placeholder="placeholder"
     :showWordLimit="showWordLimit"
     @input="updateModelValue">
-    {{ showPassword }}
   </div>
 </template>
 
@@ -64,7 +64,7 @@ const updateModelValue = (e:Event)=>{
     emit('update:modelValue',e.target.value)
 }
 
-let isFocus = ref(false)
+
 </script>
 
 <style lang="less">
@@ -97,6 +97,12 @@ let isFocus = ref(false)
     padding: 0 15px;
     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
     width: 100%;
+  }
+  .is-disabled{
+    background-color: #f5f7fa;
+    border-color: #e4e7ed;
+    color: #c0c4cc;
+    cursor: not-allowed;
   }
 }
 </style>
