@@ -8,6 +8,7 @@
       'byte-input-number--small': props.size && props.size === 'small',
     }"
   >
+    <!-- 减号 -->
     <span
       class="byte-input-number__decrease"
       :class="{
@@ -15,8 +16,12 @@
       }"
       @click="decrease"
     >
-      <i class="byte-icon"><Minus /></i>
+      <i class="byte-icon">
+        <ArrowDown v-if="props.controlsPosition === 'right'" />
+        <Minus v-else />
+      </i>
     </span>
+    <!-- 加号 -->
     <span
       class="byte-input-number__increase"
       :class="{
@@ -24,8 +29,12 @@
     }"
       @click="increase"
     >
-      <i class="byte-icon"><Plus /></i>
+      <i class="byte-icon">
+        <ArrowUp v-if="props.controlsPosition === 'right'" />
+        <Plus v-else />
+      </i>
     </span>
+    <!-- 输入框 -->
     <ByteInput
       v-model="inuptValue"
       type="number"
@@ -47,27 +56,45 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import ByteInput from './byte-input.vue'
-import { Minus, Plus } from '@element-plus/icons-vue'
+import { Minus, Plus, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 
+// 属性列表
 export interface ByteInputNumber {
+  // 选中项绑定值
   modelValue: number | undefined
+  // 设置计数器允许的最小值
   max?: number
+  // 设置计数器允许的最大值
   min?: number
+  // 计数器步长
   setup?: number
+  // 是否只能输入 step 的倍数
   stepStrictly?: boolean
+  // 数值精度
   precision?: number
+  // 计数器尺寸
   size?: 'large' | 'default' | 'small'
+  // 原生  readonly 属性，是否只读
   readonly?: boolean
+  // 是否禁用状态
   disabled?: boolean
+  // 是否使用控制按钮
   controls?: boolean
+  // 控制按钮位置
   controlsPosition?: 'right'
+  // 	等价于原生 input name 属性	
   name?: string
+  // 输入框关联的 label 文字
   label?: string
+  // 输入框默认 placeholder
   placeholder?: string
+  // 当输入框被清空时显示的值
   valueOnClear?: 'max' | 'min' | number | null
+  // 输入时是否触发表单的校验
   validateEvent?: boolean
 }
 
+// 属性定义以及默认值
 const props = withDefaults(defineProps<ByteInputNumber>(), {
   modelValue: 1,
   setup: 1,
@@ -79,31 +106,45 @@ const props = withDefaults(defineProps<ByteInputNumber>(), {
   validateEvent: true,
 })
 
+// 定义事件
 const emits = defineEmits<{
+  // 双向绑定
   (e: 'update:modelValue', newValue: number | undefined): number
   (
     e: 'change',
     currentValue: number | undefined,
     oldValue: number | undefined
   ): void
+  // 失去焦点
   (e: 'blur', event: Event): void
+  // 获得焦点
   (e: 'focus', event: Event): void
 }>()
 
+// 保存值
 let value = ref<number>(props.modelValue)
+// 输入值
 let inuptValue = ref<number | string>(value.value)
 
+// 减
 function decrease() {
+  // 如果为关闭状态或只读则跳过
   if (!props.disabled && !props.readonly) valueChange(value.value - props.setup)
 }
 
+// 加
 function increase() {
+  // 如果为关闭状态或只读则跳过
   if (!props.disabled && !props.readonly) valueChange(value.value + props.setup)
 }
 
+// 检测数值变化
 function valueChange(newValue: number | string) {
+  // 保存旧值
   let oldValue = value.value
+  // 空值处理
   if (newValue === '') {
+    // 清空时显示的值
     if (props.valueOnClear) {
       if (
         typeof props.valueOnClear === 'string' &&
@@ -116,17 +157,21 @@ function valueChange(newValue: number | string) {
         newValue = props.valueOnClear
       }
     } else {
+      // 未设置直接返回undefined
       emits('update:modelValue', undefined)
       return
     }
   }
 
+  // 如果输入值有其他字符则将NaN顶上去
   value.value = typeof newValue === 'string' ? parseFloat(newValue) : newValue
+  // 如果超出范围处理
   if (props.max && value.value > props.max) {
     value.value = props.max
   } else if (props.min && value.value < props.min) {
     value.value = props.min
   } else if (props.stepStrictly && value.value % props.setup !== 0) {
+    // 如果设置了 step 的倍数
     valueChange(value.value - (value.value % props.setup))
   }
   inuptValue.value = value.value
