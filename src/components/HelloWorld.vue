@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import byteButton from './byte-button.vue';
+// import byteButton from './byte-button.vue';
 defineProps<{ msg: string }>()
 
 const count = ref(0)
@@ -8,7 +8,7 @@ const count = ref(0)
 
 <template>
   <h1>{{ msg }}</h1>
-  <byte-button>click me</byte-button>
+<!--  <byte-button>click me</byte-button>-->
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
     <p>
