@@ -17,12 +17,17 @@
         :minlength="minlength"
         :readonly="readonly"
         :placeholder="placeholder"
-        :showWordLimit="showWordLimit" 
         @input="updateModelValue" >
         <!-- suffix-icon -->
         <span v-if="suffix" class="suffix-icon">
           <template v-if="clearable">
             <span @click="clearInput">x</span>
+          </template>
+          <template v-if="showPassword">
+            <span @click="showInput">e</span>
+          </template>
+          <template v-if="showWordLimit && maxlength">
+            <span>{{ modelValue.toString().length }} / {{ maxlength }}</span>
           </template>
         </span>
       </div>
@@ -83,7 +88,6 @@ const emit = defineEmits<{
 }>()
 //实现双向绑定
 const updateModelValue = (e:Event)=>{
-  console.log(2)
   if(e.target!==null){
     emit('update:modelValue',e.target.value)
   }
@@ -91,7 +95,7 @@ const updateModelValue = (e:Event)=>{
 //判断后置图标是否显示
 const suffix = computed(
   ()=>{
-    return props.suffixIcon || props.clearable
+    return props.suffixIcon || props.clearable || props.showPassword || (props.showWordLimit && props.maxlength)
   }
 )
 //清空input区域，仅当clearable props为true时 dom才被渲染出来
@@ -99,15 +103,27 @@ let myinput = ref(null) //input实例
 onMounted(()=>{
   console.log(myinput.value)
 })
-const clearInput = ()=>{
-  console.log(1)
+const clearInput = ():void=>{
   if(myinput.value!==null){
     myinput.value.value = ''
   }
 }
-const test = ()=>{
+const test = ():void=>{
   console.log('test')
 }
+//显示密码
+const showInput = ():void=>{
+  if(myinput.value!==null){
+    let nowType:string = myinput.value.type 
+    if(nowType === 'password'){
+      myinput.value.type = 'text'
+    }else if(nowType === 'text'){
+      myinput.value.type = 'password'
+    }
+  }
+}
+//显示字数限制
+
 </script>
 
 <style lang="less">
