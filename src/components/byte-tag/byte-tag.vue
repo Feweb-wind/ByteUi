@@ -33,8 +33,8 @@ const props = defineProps({
 const className = computed(() => {
   const type = props.type === "" ? "byte-tag" : `byte-tag byte-tag-${props.type}`;
   const size = props.size === "" ? "" : ` byte-tag-${props.size}`;
-
-  return type + size;
+  const effect = props.effect === "" ? ` byte-tag-light` : ` byte-tag-${props.effect}`;
+  return type + size + effect;
 });
 
 </script>
