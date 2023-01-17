@@ -1,5 +1,5 @@
 <template>
-  <div class="byte-slider">
+  <div :class="sliderClass">
     <input
       type="range"
       :min="min"
@@ -7,10 +7,13 @@
       :value="modelValue"
       :step="step"
       :disabled="disabled"
+      @change="updateValue"
     />
   </div>
 </template>
+
 <script setup lang="ts">
+import { computed } from "vue";
 const props = defineProps({
   min: {
     type: Number,
@@ -34,6 +37,21 @@ const props = defineProps({
   },
 });
 
+// 双向绑定
+const emit = defineEmits(['update:modelValue']);
+const updateValue = (e: Event) => {
+  emit('update:modelValue', (e.target as HTMLInputElement).value)
+}
+
+// 设置动态样式
+const sliderClass = computed(() => {
+  return [
+    "byte-slider",
+    {
+      "byte-slider-disable": props.disabled
+    }
+  ]
+});
 
 </script>
 <style lang="less" scoped>
@@ -43,6 +61,15 @@ const props = defineProps({
   input {
     width: 100%;
     cursor: pointer;
+    // cursor: grab;
+  }
+}
+
+.byte-slider-disable {
+  input {
+    width: 100%;
+    cursor: no-drop;
+    // cursor: grab;
   }
 }
 </style>

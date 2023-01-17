@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import ByteSlider from './components/byte-slider.vue'
+import { ref  } from "vue";
+let modelValue = ref(0)
 </script>
 
 <template>
@@ -11,7 +13,8 @@ import ByteSlider from './components/byte-slider.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <ByteSlider />
+  <ByteSlider v-model="modelValue" :step="10" disabled />
+  <p>{{ modelValue }}</p>
 </template>
 
 <style scoped>
