@@ -11,7 +11,9 @@
   <br>
   <br>
 
-  <byte-tag>default</byte-tag><br>
+  <byte-tag closable size="small">defaultg</byte-tag> &emsp;
+  <byte-tag closable size="default">default</byte-tag> &emsp;
+  <byte-tag closable size="large">default</byte-tag><br>
   <byte-tag type="success">success</byte-tag><br>
   <byte-tag type="info">info</byte-tag><br>
   <byte-tag type="warning">warning</byte-tag><br>
