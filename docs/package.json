@@ -1,0 +1,16 @@
+{
+  "name": "byte-ui-docs",
+  "version": "1.0.0",
+  "description": "byteUiDocs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vitepress": "^1.0.0-alpha.36"
+  }
+}
