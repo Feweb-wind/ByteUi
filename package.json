@@ -20,6 +20,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@highlightjs/vue-plugin": "^2.1.0",
     "@popperjs/core": "^2.11.6",
     "highlight.js": "^11.7.0",
     "vite-plugin-md": "^0.21.5",

@@ -81,10 +81,6 @@ code {
   line-height: 1.4;
 }
 
-.example-showcase {
-  padding: 1.5rem;
-}
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
