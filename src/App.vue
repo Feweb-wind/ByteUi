@@ -13,7 +13,8 @@ let modelValue = ref(0)
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <ByteSlider v-model="modelValue" :step="10" disabled />
+  <ByteSlider disabled />
+  <ByteSlider v-model="modelValue" :step="2" />
   <p>{{ modelValue }}</p>
 </template>
 
