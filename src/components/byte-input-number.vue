@@ -16,10 +16,10 @@
       }"
       @click="decrease"
     >
-      <i class="byte-icon">
+      <byte-icon>
         <ArrowDown v-if="props.controlsPosition === 'right'" />
         <Minus v-else />
-      </i>
+      </byte-icon>
     </span>
     <!-- 加号 -->
     <span
@@ -29,10 +29,10 @@
     }"
       @click="increase"
     >
-      <i class="byte-icon">
+      <byte-icon>
         <ArrowUp v-if="props.controlsPosition === 'right'" />
         <Plus v-else />
-      </i>
+      </byte-icon>
     </span>
     <!-- 输入框 -->
     <ByteInput
@@ -56,6 +56,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import ByteInput from './byte-input.vue'
+import ByteIcon from './byte-icon.vue'
 import { Minus, Plus, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 
 // 属性列表
@@ -82,7 +83,7 @@ export interface ByteInputNumber {
   controls?: boolean
   // 控制按钮位置
   controlsPosition?: 'right'
-  // 	等价于原生 input name 属性	
+  // 等价于原生 input name 属性
   name?: string
   // 输入框关联的 label 文字
   label?: string
@@ -181,11 +182,6 @@ function valueChange(newValue: number | string) {
 </script>
 
 <style lang="less">
-.byte-icon {
-  height: 1em;
-  width: 1em;
-  line-height: 1em;
-}
 .byte-input-number {
   position: relative;
   display: inline-flex;
