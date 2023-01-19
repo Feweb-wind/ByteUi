@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import {dividerProps} from "@/components/byte-divider/divider.ts";
+import {dividerProps} from "@/components/byte-divider/src/divider.ts";
 import {computed, ref} from "vue";
 const props = defineProps(dividerProps);
 

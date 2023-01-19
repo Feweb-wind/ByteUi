@@ -23,7 +23,7 @@
 
 <script lang="ts" setup>
 import {computed, defineProps} from "vue";
-import {tagEmits, tagProps} from "@/components/byte-tag/tag";
+import {tagEmits, tagProps} from "@/components/byte-tag/src/tag";
 
 const emit = defineEmits(tagEmits);
 const props = defineProps(tagProps);

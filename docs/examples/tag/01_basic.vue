@@ -7,5 +7,5 @@
 </template>
 
 <script lang="ts" setup>
-import ByteTag from "@/components/byte-tag/byte-tag.vue"
+import ByteTag from "../../../src/components/byte-tag/src/tag.vue"
 </script>
