@@ -1,41 +1,50 @@
 <template>
   <span
-    :class="className"
+      v-if="disableTransitions"
+      :class="className"
+      :style="{ backgroundColor: color }"
+      @click="handleClick"
   >
     <span><slot></slot></span>
-    <span v-if="closable" @click.stop="handleClose">&nbsp;×</span>
+    <span v-if="closable" @click.stop="handleClose">×</span>
   </span>
+
+  <transition v-else appear>
+    <span
+        :class="className"
+        :style="{ backgroundColor: color }"
+        @click="handleClick"
+    >
+      <span><slot></slot></span>
+    <span v-if="closable" @click.stop="handleClose">×</span>
+    </span>
+  </transition>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import {computed, defineProps} from "vue";
+import {tagEmits, tagProps} from "@/components/byte-tag/tag";
 
-const props = defineProps({
-  type: {
-    type: String,
-    default: ''
-  },
-  closable: Boolean,
-  disableTransitions: Boolean,
-  hit: Boolean,
-  color: String,
-  size: {
-    type: String,
-    default: "default"
-  },
-  effect: {
-    type: String,
-    default: "light"
-  },
-  round: Boolean
-});
+const emit = defineEmits(tagEmits);
+const props = defineProps(tagProps);
 
 const className = computed(() => {
-  const type = props.type === "" ? "byte-tag" : `byte-tag byte-tag-${props.type}`;
+
+  const type = props.type === "" ? "byte-tag byte-tag-primary" : `byte-tag byte-tag-${props.type}`;
   const size = props.size === "" ? "" : ` byte-tag-${props.size}`;
   const effect = props.effect === "" ? ` byte-tag-light` : ` byte-tag-${props.effect}`;
-  return type + size + effect;
+  const round = props.round ? ` byte-tag-round` : ``;
+
+  return type + size + effect + round;
 });
+
+const handleClose = (event: MouseEvent) => {
+  emit('close', event);
+}
+
+const handleClick = (event: MouseEvent) => {
+  emit('click', event)
+}
 
 </script>
 

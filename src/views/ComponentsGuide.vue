@@ -1,14 +1,6 @@
 <template>
   <div class="container">
     <div class="left-menu">
-<!--      <li-->
-<!--          v-for="(item, index) in list"-->
-<!--          :key="item.name"-->
-<!--          :class="{active: activeIndex === index}"-->
-<!--          @click="switchMenu(item, index)"-->
-<!--      >-->
-<!--        {{ item.name }}-->
-<!--      </li>-->
       <section v-for="(item, index) in asideKeys" :key="'leftBar' + index" class="sidebar-group">
         <p class="sidebar-group-title">{{item.name}}</p>
         <a v-for="(route, index) in item.data"
@@ -84,13 +76,14 @@ const switchMenu = (path: string):void => {
 </script>
 
 <style lang="less" scoped>
+@left-width: 250px;
 .container {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
 
   .left-menu {
-    width: 250px;
+    width: @left-width;
     height: auto;
     overflow-y: auto;
     border-right: 1px solid #f0f0f0;
@@ -139,6 +132,7 @@ const switchMenu = (path: string):void => {
     padding: 0 15px;
     height: 100vh;
     overflow-y: scroll;
+    width: calc(100vw - @left-width);
   }
 
 

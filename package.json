@@ -17,11 +17,17 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
   },
   "dependencies": {
     "@highlightjs/vue-plugin": "^2.1.0",
     "@popperjs/core": "^2.11.6",
+    "@vitepress-demo-preview/component": "^2.1.0",
+    "@vitepress-demo-preview/plugin": "^1.1.6",
+    "byte-ui-test": "^0.0.6",
     "highlight.js": "^11.7.0",
     "vite-plugin-md": "^0.21.5",
     "vue": "^3.2.45",
@@ -36,6 +42,7 @@
     "stylus": "^0.59.0",
     "typescript": "^4.9.3",
     "vite": "^4.0.0",
+    "vitepress": "^1.0.0-alpha.38",
     "vue-tsc": "^1.0.11"
   }
 }
