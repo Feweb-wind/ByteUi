@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
+    "axios": "^1.2.3",
+    "lodash-unified": "^1.0.3",
     "vue": "^3.2.45"
   },
   "devDependencies": {
