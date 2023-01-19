@@ -47,8 +47,8 @@
       :min="props.min"
       :label="props.label"
       @change="valueChange(inuptValue)"
-      @blur="event => emits('blur', event)"
-      @focus="event => emits('focus', event)"
+      @blur="(event: Event) => emits('blur', event)"
+      @focus="(event: Event) => emits('focus', event)"
     />
   </div>
 </template>
