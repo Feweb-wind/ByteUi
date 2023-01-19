@@ -1,4 +1,4 @@
-import ByteUpload from "./byte-upload.vue";
+import ByteUpload from "./src/byte-upload.vue";
 
 export default ByteUpload
-export * from './upload'
+export * from './src/upload'
