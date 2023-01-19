@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { cloneNode } from "@babel/types";
-import { ref, computed, inject, ComputedRef, withDefaults } from "vue";
+import { withDefaults } from "vue";
 import { useCheckbox } from "./useCheckbox";
 interface checkboxProps {
   modelValue?: number | string | boolean;
   label?: string | boolean | number | object;
   disabled?: boolean;
   border?: boolean;
-  trueLabel?: number | string;
-  falseLabel?: number | string;
+  trueLabel?: number | string;//对应true-value
+  falseLabel?: number | string;//false-value
   id?: string;
   name?: string;
   size?: "large" | "small" | "default";
   checked?: boolean;
-  indeterminate?: boolean;
+  indeterminate?: boolean; //中间项，原生checkbox自带属性
   isButton?: boolean;
 }
 
@@ -31,11 +31,8 @@ const emit = defineEmits<{
   (e: "update:modelValue", value: string | number | boolean): void;
   (e: "change", val: boolean | string | number): void;
 }>();
-
+//使用hooks封装所用处理逻辑
 const { handleChange, model, isChecked, isDisabled } = useCheckbox(props, emit);
-
-const isFloat = ref(props.isButton ? "none" : "left");
-const color = ref("red");
 </script>
 
 <template>
