@@ -15,6 +15,7 @@ const changeEvent = (val: Array<number | string>) => {
   emits("change", val);
   emits("update:modelValue", val);
 };
+//使用provide/inject进行组件通讯，将props传入checkbox处理
 provide("CheckboxGroup", {
   name: "ICheckboxGroup",
   modelValue,
@@ -26,8 +27,10 @@ provide("CheckboxGroup", {
 </script>
 
 <template>
+  <!-- 此组件对checkbox进行包裹，通过slot传入子项
+    所有子项的value与自身属性绑定，共用一个数组对值存储 
+  -->
   <div>
-    <div>{{ modelValue }}</div>
     <slot></slot>
   </div>
 </template>
