@@ -47,8 +47,8 @@
       :min="props.min"
       :label="props.label"
       @change="valueChange(inuptValue)"
-      @blur="event => emits('blur', event)"
-      @focus="event => emits('focus', event)"
+      @blur="(event: Event) => emits('blur', event)"
+      @focus="(event: Event) => emits('focus', event)"
     />
   </div>
 </template>
@@ -82,7 +82,7 @@ export interface ByteInputNumber {
   controls?: boolean
   // 控制按钮位置
   controlsPosition?: 'right'
-  // 	等价于原生 input name 属性	
+  // 	等价于原生 input name 属性
   name?: string
   // 输入框关联的 label 文字
   label?: string
