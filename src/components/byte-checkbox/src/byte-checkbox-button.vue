@@ -12,6 +12,9 @@ const props = defineProps<CheckboxButtonProps>();
 </script>
 
 <template>
+  <!-- // 对checkbox的组件结构进行复用，大致属性相似，
+    只需指定属性isButton就可以实现checkbox-button
+  -->
   <ByteCheckbox
     class="hasBorder"
     :label="label"
