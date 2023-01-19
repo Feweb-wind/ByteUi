@@ -4,7 +4,8 @@
     <slot></slot>
   </div>
 
-  <byte-divider/>
+<!--  <byte-divider/>-->
+  <hr/>
 
   <div class="opt-btns" style="display: flex; flex-flow: row-reverse; align-items: center">
     <img style="margin: 0 15px 10px 15px; cursor: pointer" width="14" src="./icons/code.svg" alt="code" @click="showSourceCode"/>
@@ -31,19 +32,29 @@
 
 <script lang="ts" setup>
 import {defineProps, onMounted, ref} from "vue";
-import ByteDivider from "@/components/byte-divider/byte-divider.vue";
 
 const props = defineProps({
   compName: String,
-  demoName: String
+  demoName: String,
+  demoType: String,
 });
 
 const sourceCode = ref<string>("");
 const sourceCodeVisible = ref<boolean>(false);
 async function getSourceCode() {
-  sourceCode.value = (await import( /* @vite-ignore */
-      `@/components/${props.compName}/doc/${props.demoName}.vue?raw`
-      )).default;
+
+  if (props.demoType === "docs") {
+    sourceCode.value = (await import( /* @vite-ignore */
+        `../../../docs/examples/${props.compName}/${props.demoName}.vue?raw`
+        )).default;
+    console.log(sourceCode.value)
+  }
+  //`docs/examples/${props.compName}/${props.demoName}.vue?raw`
+  else {
+    sourceCode.value = (await import( /* @vite-ignore */
+        `@/components/${props.compName}/doc/${props.demoName}.vue?raw`
+        )).default;
+  }
 }
 
 onMounted(() => {

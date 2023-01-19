@@ -29,11 +29,14 @@ const emit = defineEmits(tagEmits);
 const props = defineProps(tagProps);
 
 const className = computed(() => {
-
-  const type = props.type === "" ? "byte-tag byte-tag-primary" : `byte-tag byte-tag-${props.type}`;
-  const size = props.size === "" ? "" : ` byte-tag-${props.size}`;
-  const effect = props.effect === "" ? ` byte-tag-light` : ` byte-tag-${props.effect}`;
-  const round = props.round ? ` byte-tag-round` : ``;
+  // type: [primary] warning, info, danger, success
+  const type: string = props.type === "" ? "byte-tag byte-tag-primary" : `byte-tag byte-tag-${props.type}`;
+  // size: large, small, default
+  const size: string = props.size === "" ? "" : ` byte-tag-${props.size}`;
+  // effect: light, dark, plain
+  const effect: string = props.effect === "" ? ` byte-tag-light` : ` byte-tag-${props.effect}`;
+  // round: true, false
+  const round: string = props.round ? ` byte-tag-round` : ``;
 
   return type + size + effect + round;
 });

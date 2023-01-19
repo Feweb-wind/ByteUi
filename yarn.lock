@@ -673,10 +673,10 @@
   resolved "https://registry.npmjs.org/@vitepress-demo-preview/component/-/component-2.1.0.tgz#d394400fa6ac2e82caa5a8eaf6b147bb4b084d73"
   integrity sha512-5UCFqHuqslnzv228OQc2fzwrg6uogwuKhNlQfz4OBVKAS3iVqB8/1PftfghL1HfV08s7Y96IC/HMOnoEoTtImA==
 
-"@vitepress-demo-preview/plugin@^1.1.6":
-  version "1.1.6"
-  resolved "https://registry.npmjs.org/@vitepress-demo-preview/plugin/-/plugin-1.1.6.tgz#a0a2c6594fa75b53675fa3b1565301cd77492a94"
-  integrity sha512-7T+r6ER0Zeis71Ky53xH2pznlhDOongF3s9KHfz+7DHx9W3OTY6rMF6VQB/7nwDXaTuEPwREYBgH1o+G+KGJJQ==
+"@vitepress-demo-preview/plugin@1.1.4":
+  version "1.1.4"
+  resolved "https://registry.npmjs.org/@vitepress-demo-preview/plugin/-/plugin-1.1.4.tgz#d2b4d49522111ad200d25e5d26552b208d135005"
+  integrity sha512-Zik6TjC9E0pBgp1rSP+pWPoBCU9rfplhPnLlzFJ1WEbOCgyaWwBoOJkXNJq7pyEB4By98hB2FqLoHo1MMNubUQ==
   dependencies:
     markdown-it "^13.0.1"
     markdown-it-container "^3.0.0"
