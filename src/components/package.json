@@ -1,11 +1,8 @@
 {
-  "name": "@byte-ui/docs",
+  "name": "@byte-ui/components",
   "version": "1.0.0",
-  "description": "",
+  "description": "all components are settled here",
   "main": "index.ts",
-  "directories": {
-    "example": "examples"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

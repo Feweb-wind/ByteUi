@@ -1,0 +1,23 @@
+{
+  "hash": "6fa329d9",
+  "browserHash": "607ff27a",
+  "optimized": {
+    "vue": {
+      "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "9bdaa155",
+      "needsInterop": false
+    },
+    "@highlightjs/vue-plugin": {
+      "src": "../../../../node_modules/@highlightjs/vue-plugin/dist/highlightjs-vue.esm.min.js",
+      "file": "@highlightjs_vue-plugin.js",
+      "fileHash": "7cd864c6",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-V33C23AW": {
+      "file": "chunk-V33C23AW.js"
+    }
+  }
+}

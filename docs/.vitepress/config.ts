@@ -1,15 +1,20 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from 'vitepress';
+import sidebar from "./config/sidebar";
+import nav from "./config/nav";
 
 export default defineConfig({
-  lang: 'zh_CN',
-  title: 'byteUI文档',
-  description: 'Vite & Vue powered static site generator.',
-  // 外貌
-  appearance: true,
-  // 最近更新时间
-  lastUpdated: true,
-  markdown: {
-    theme: 'material-palenight',
-    lineNumbers: true,
-  },
-})
+    markdown: {
+        theme: {
+            light: 'vitesse-light',
+            dark: 'vitesse-dark'
+        },
+        lineNumbers: true,
+    },
+    themeConfig: {
+        siteTitle: "ByteUI",
+        logo: '/images/element-plus-logo.svg',
+        nav,
+        sidebar
+    },
+
+});
