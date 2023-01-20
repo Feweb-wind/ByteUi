@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../node_modules/byte-ui-test/dist/lib.es.js"],
-  "sourcesContent": ["import { openBlock as s, createElementBlock as _, createElementVNode as r, renderSlot as l } from \"vue\";\nconst u = (t, e) => {\n  const n = t.__vccOpts || t;\n  for (const [o, c] of e)\n    n[o] = c;\n  return n;\n}, a = {}, d = { class: \"el-button\" };\nfunction f(t, e) {\n  return s(), _(\"button\", d, [\n    r(\"span\", null, [\n      l(t.$slots, \"default\", {}, void 0, !0)\n    ])\n  ]);\n}\nconst p = /* @__PURE__ */ u(a, [[\"render\", f], [\"__scopeId\", \"data-v-2d5b4c1f\"]]), i = {\n  install: (t) => {\n    t.component(\"byte-button\", p);\n  }\n};\nexport {\n  i as default\n};\n"],
-  "mappings": ";;;;;;;;AACA,IAAM,IAAI,CAAC,GAAG,MAAM;AAClB,QAAM,IAAI,EAAE,aAAa;AACzB,aAAW,CAAC,GAAG,CAAC,KAAK;AACnB,MAAE,CAAC,IAAI;AACT,SAAO;AACT;AALA,IAKG,IAAI,CAAC;AALR,IAKW,IAAI,EAAE,OAAO,YAAY;AACpC,SAAS,EAAE,GAAG,GAAG;AACf,SAAO,UAAE,GAAG,mBAAE,UAAU,GAAG;AAAA,IACzB,gBAAE,QAAQ,MAAM;AAAA,MACd,WAAE,EAAE,QAAQ,WAAW,CAAC,GAAG,QAAQ,IAAE;AAAA,IACvC,CAAC;AAAA,EACH,CAAC;AACH;AACA,IAAM,IAAoB,EAAE,GAAG,CAAC,CAAC,UAAU,CAAC,GAAG,CAAC,aAAa,iBAAiB,CAAC,CAAC;AAAhF,IAAmF,IAAI;AAAA,EACrF,SAAS,CAAC,MAAM;AACd,MAAE,UAAU,eAAe,CAAC;AAAA,EAC9B;AACF;",
-  "names": []
-}

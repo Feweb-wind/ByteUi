@@ -5,7 +5,3 @@
   <byte-tag type="warning">Tag 4</byte-tag>
   <byte-tag type="danger">Tag 5</byte-tag>
 </template>
-
-<script lang="ts" setup>
-import ByteTag from "../../../src/components/byte-tag/src/tag.vue"
-</script>

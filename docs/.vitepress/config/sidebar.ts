@@ -31,8 +31,7 @@ export default {
         {
             text: 'Others 其他',
             items: [
-                {text: 'Button 按钮', link: '/component/button'},
-                {text: 'Border 边框', link: '/component/border'},
+                {text: 'Divider 分割线', link: '/component/divider'},
             ]
         }
     ],

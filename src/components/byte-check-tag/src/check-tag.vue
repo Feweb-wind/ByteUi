@@ -5,9 +5,11 @@
 </template>
 
 <script lang="ts" setup>
-import { checkTagEmits, checkTagProps } from './check-tag';
+import { checkTagEmits, checkTagProps } from './check-tag.ts';
 import {computed} from "vue";
-
+defineOptions({
+  name: 'ByteCheckTag',
+})
 const props = defineProps(checkTagProps);
 const emit = defineEmits(checkTagEmits);
 const className = computed(() => props.checked ? "is-checked" : "");

@@ -22,9 +22,12 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, defineProps} from "vue";
-import {tagEmits, tagProps} from "@/components/byte-tag/src/tag";
+import {computed} from "vue";
+import {tagEmits, tagProps} from "./tag.ts";
 
+defineOptions({
+  name: 'ByteTag',
+});
 const emit = defineEmits(tagEmits);
 const props = defineProps(tagProps);
 
