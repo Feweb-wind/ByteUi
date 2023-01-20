@@ -1,6 +1,5 @@
 import CodePreview from "../../../src/components/CodePreview/index.vue";
 import hljsVuePlugin from '@highlightjs/vue-plugin';
-import '@vitepress-demo-preview/component/dist/style.css';
 import DefaultTheme from 'vitepress/theme';
 import {App} from "vue";
 import ByteUI from "byte-ui-test";
