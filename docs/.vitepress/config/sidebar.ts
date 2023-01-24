@@ -31,7 +31,7 @@ export default {
         {
             text: 'Others 其他',
             items: [
-                {text: 'Divider 分割线', link: '/component/divider'},
+                {text: 'Divider 分割线', link: '/components/divider'},
             ]
         }
     ],
