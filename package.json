@@ -18,7 +18,8 @@
     "docs",
     "src/components",
     "src/byte-ui",
-    "src/utils"
+    "src/utils",
+    "src/hooks"
   ],
   "scripts": {
     "dev": "vite",
@@ -35,6 +36,7 @@
     "@byte-ui/components": "workspace:*",
     "@byte-ui/docs": "workspace:*",
     "@byte-ui/utils": "workspace: *",
+    "@byte-ui/hooks": "workspace: *",
     "@highlightjs/vue-plugin": "^2.1.0",
     "byte-ui": "workspace:*",
     "highlight.js": "^11.7.0",

@@ -52,14 +52,14 @@ export const uploadBaseProps = {
     default: '#',
   },
   headers: {
-    type: Object as Headers | Record<string, any>,
+    type: Object,
   },
   method: {
     type: String,
     default: 'post',
   },
   data: {
-    type: Object as Record<string, any>,
+    type: Object,
     default: {},
   },
   multiple: {
