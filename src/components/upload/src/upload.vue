@@ -1,10 +1,12 @@
 <template>
-  <div class="byte-upload">
+  <div>
     <slot name="tip" />
+    <upload-content></upload-content>
   </div>
 </template>
 
 <script lang="ts" setup>
+import UploadContent from "./upload-content.vue";
 import {
   uploadProps,
 } from './upload'

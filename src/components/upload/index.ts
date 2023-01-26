@@ -1,4 +1,6 @@
-import ByteUpload from "./src/upload.vue";
+import { withInstall } from '@/utils'
+import Upload from './src/upload.vue'
 
+export const ByteUpload = withInstall(Upload)
 export default ByteUpload
 export * from './src/upload'

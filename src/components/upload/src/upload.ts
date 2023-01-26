@@ -1,3 +1,4 @@
+import { Awaitable } from '@/utils'
 import { NOOP } from '@vue/shared'
 import { AxiosProgressEvent } from 'axios'
 import { PropType, ExtractPropTypes } from 'vue'
@@ -52,14 +53,14 @@ export const uploadBaseProps = {
     default: '#',
   },
   headers: {
-    type: Object,
+    type: Object as PropType<Headers | Record<string, any>>,
   },
   method: {
     type: String,
     default: 'post',
   },
   data: {
-    type: Object,
+    type: Object as PropType<Record<string, any>>,
     default: {},
   },
   multiple: {
@@ -111,11 +112,11 @@ export const uploadBaseProps = {
 export interface UploadHooks {
   beforeUpload: (
     rawFile: UploadRawFile
-  ) => Promise<void | undefined | null | boolean | File | Blob> | boolean
+  ) => Awaitable<void | undefined | null | boolean | File | Blob>
   beforeRemove: (
     uploadFile: UploadFile,
     uploadFiles: UploadFiles
-  ) => Promise<boolean> | boolean
+  ) => Awaitable<boolean>
   onRemove: (uploadFile: UploadFile, uploadFiles: UploadFiles) => void
   onChange: (uploadFile: UploadFile, uploadFiles: UploadFiles) => void
   onPreview: (uploadFile: UploadFile) => void
