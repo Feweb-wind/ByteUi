@@ -5,10 +5,11 @@
       content="hhhh have a try<br/><hr style='height: 0.5px'/>lalala"
       placement="left-end"
       :show-arrow="true"
+      effect="light"
   >
     <!--    something-->
     <!--  <button style="background-color: green; ">something</button>  -->
-    <span style="background-color: green; ">&emsp;&emsp;&emsp;something</span>
+    <button style="background-color: green; ">something</button>
 
   </ByteTooltip>
   <br/>
@@ -22,7 +23,7 @@
   >
     <!--    something-->
     <!--  <button style="background-color: green; ">something</button>  -->
-    <span style="background-color: green; ">&emsp;&emsp;&emsp;something</span>
+    <button style="background-color: green; ">something</button>
 
   </ByteTooltip>
 
@@ -38,7 +39,7 @@
   >
     <!--    something-->
     <!--  <button style="background-color: green; ">something</button>  -->
-    <span style="background-color: green; ">&emsp;&emsp;&emsp;something</span>
+    <button style="background-color: green; ">something</button>
 
   </ByteTooltip>
 </div>
