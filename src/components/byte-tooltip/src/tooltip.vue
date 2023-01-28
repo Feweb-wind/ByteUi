@@ -15,12 +15,10 @@
       v-if="visible"
       aria-describedby="tooltip"
   >
-    <template v-if="rawContent">
-      <div v-text="content"></div>
-    </template>
-    <template v-else>
-      <div v-html="content"></div>
-    </template>
+    <slot name="content">
+      <span v-if="rawContent" v-html="content"/>
+      <span v-else>{{content}}</span>
+    </slot>
     <div
         class="byte-tooltip-arrow byte-tooltip-arrow2"
         ref="byteTooltipArrow"

@@ -1,8 +1,9 @@
 <template>
   <byte-tooltip content="Top center" placement="top">
-    <button>Dark</button>
+    <byte-button>Dark</byte-button>
   </byte-tooltip>
+
   <byte-tooltip content="Bottom center" placement="bottom" effect="light">
-    <button>Light</button>
+    <byte-button>Light</byte-button>
   </byte-tooltip>
 </template>

@@ -7,7 +7,7 @@
           content="Top Left prompts info"
           placement="top-start"
       >
-        <button>top-start</button>
+        <byte-button>top-start</byte-button>
       </byte-tooltip>
       <byte-tooltip
           class="box-item"
@@ -15,7 +15,7 @@
           content="Top Center prompts info"
           placement="top"
       >
-        <button>top</button>
+        <byte-button>top</byte-button>
       </byte-tooltip>
       <byte-tooltip
           class="box-item"
@@ -23,7 +23,7 @@
           content="Top Right prompts info"
           placement="top-end"
       >
-        <button>top-end</button>
+        <byte-button>top-end</byte-button>
       </byte-tooltip>
     </div>
     <div class="row">
@@ -33,7 +33,7 @@
           content="Left Top prompts info"
           placement="left-start"
       >
-        <button>left-start</button>
+        <byte-button>left-start</byte-button>
       </byte-tooltip>
       <byte-tooltip
           class="box-item"
@@ -41,7 +41,7 @@
           content="Right Top prompts info"
           placement="right-start"
       >
-        <button>right-start</button>
+        <byte-button>right-start</byte-button>
       </byte-tooltip>
     </div>
     <div class="row">
@@ -51,7 +51,7 @@
           content="Left Center prompts info"
           placement="left"
       >
-        <button class="mt-3 mb-3">left</button>
+        <byte-button>left</byte-button>
       </byte-tooltip>
       <byte-tooltip
           class="box-item"
@@ -59,7 +59,7 @@
           content="Right Center prompts info"
           placement="right"
       >
-        <button>right</button>
+        <byte-button>right</byte-button>
       </byte-tooltip>
     </div>
     <div class="row">
@@ -69,7 +69,7 @@
           content="Left Bottom prompts info"
           placement="left-end"
       >
-        <button>left-end</button>
+        <byte-button>left-end</byte-button>
       </byte-tooltip>
       <byte-tooltip
           class="box-item"
@@ -77,7 +77,7 @@
           content="Right Bottom prompts info"
           placement="right-end"
       >
-        <button>right-end</button>
+        <byte-button>right-end</byte-button>
       </byte-tooltip>
     </div>
     <div class="row center">
@@ -87,7 +87,7 @@
           content="Bottom Left prompts info"
           placement="bottom-start"
       >
-        <button>bottom-start</button>
+        <byte-button>bottom-start</byte-button>
       </byte-tooltip>
       <byte-tooltip
           class="box-item"
@@ -95,7 +95,7 @@
           content="Bottom Center prompts info"
           placement="bottom"
       >
-        <button>bottom</button>
+        <byte-button>bottom</byte-button>
       </byte-tooltip>
       <byte-tooltip
           class="box-item"
@@ -103,7 +103,7 @@
           content="Bottom Right prompts info"
           placement="bottom-end"
       >
-        <button>bottom-end</button>
+        <byte-button>bottom-end</byte-button>
       </byte-tooltip>
     </div>
   </div>
