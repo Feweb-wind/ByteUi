@@ -109,7 +109,11 @@
   </div>
 </template>
 
-<style>
+<style scoped>
+button {
+  background-color: #67C23A;
+  margin: 5px;
+}
 .tooltip-base-box {
   width: 600px;
 }

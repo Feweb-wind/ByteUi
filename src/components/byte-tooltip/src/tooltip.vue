@@ -13,6 +13,7 @@
       :class="effectClass"
       ref="byteTooltipContainer"
       v-if="visible"
+      aria-describedby="tooltip"
   >
     <template v-if="rawContent">
       <div v-text="content"></div>
@@ -23,6 +24,7 @@
     <div
         class="byte-tooltip-arrow byte-tooltip-arrow2"
         ref="byteTooltipArrow"
+        data-popper-arrow
     >
     </div>
   </div>

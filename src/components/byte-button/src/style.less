@@ -1,0 +1,183 @@
+
+
+.byte-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  height: 32px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #606266;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: .1s;
+  font-weight: 500;
+  user-select: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-color: #ffffff;
+  border: 1px solid #dcdfe6;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 4px;
+
+  &.is-round {
+    border-radius: 20px;
+  }
+
+  &.is-circle {
+    border-radius: 50%;
+    padding: 8px;
+  }
+
+  &.is-disabled, &.is-disabled:hover, &.is-disabled:focus {
+    color: #a8abb2;
+    cursor: not-allowed;
+    background-image: none;
+    background-color: #ffffff;
+    border-color: #e4e7ed;
+  }
+
+  &.byte-button-primary {
+    color: #ffffff;
+    background-color: #409eff;
+    border: 1px solid #409eff;
+
+    &.is-disabled, &.is-disabled:hover, &.is-disabled:focus {
+      color: #ffffff;
+      cursor: not-allowed;
+      background-image: none;
+      background-color: #a0cfff;
+      border-color: #a0cfff;
+    }
+
+    &.is-plain {
+      color: #409eff;
+      background-color: #ecf5ff;
+      border-color: #a0cfff;
+
+      &.is-disabled, &.is-disabled:hover, &.is-disabled:focus {
+        color: #a0cfff;
+        cursor: not-allowed;
+        background-image: none;
+        background-color: #ecf5ff;
+        border-color: #d9ecff;
+      }
+    }
+
+  }
+
+  &.byte-button-success {
+    color: #ffffff;
+    background-color: #67C23A;
+    border: 1px solid #67C23A;
+
+    &.is-disabled, &.is-disabled:hover, &.is-disabled:focus {
+      color: #ffffff;
+      cursor: not-allowed;
+      background-image: none;
+      background-color: #b3e19d;
+      border-color: #b3e69d;
+    }
+
+    &.is-plain {
+      color: #67C23A;
+      background-color: #f0f9eb;
+      border-color: #b3e69d;
+
+      &.is-disabled, &.is-disabled:hover, &.is-disabled:focus {
+        color: #b3e19d;
+        cursor: not-allowed;
+        background-image: none;
+        background-color: #f0f9eb;
+        border-color: #e1f3d8;
+      }
+    }
+  }
+
+  &.byte-button-info {
+    color: #ffffff;
+    background-color: #909399;
+    border: 1px solid #909399;
+
+    &.is-disabled, &.is-disabled:hover, &.is-disabled:focus {
+      color: #ffffff;
+      cursor: not-allowed;
+      background-image: none;
+      background-color: #c8c9cc;
+      border-color: #c8c9cc;
+    }
+
+    &.is-plain {
+      color: #909399;
+      background-color: #f4f4f5;
+      border-color: #c8c9cc;
+
+      &.is-disabled, &.is-disabled:hover, &.is-disabled:focus {
+        color: #c8c9cc;
+        cursor: not-allowed;
+        background-image: none;
+        background-color: #f4f4f5;
+        border-color: #e9e9eb;
+      }
+    }
+  }
+
+  &.byte-button-warning {
+    color: #ffffff;
+    background-color: #e6a23c;
+    border: 1px solid #e6a23c;
+
+    &.is-disabled, &.is-disabled:hover, &.is-disabled:focus {
+      color: #ffffff;
+      cursor: not-allowed;
+      background-image: none;
+      background-color: #f3d19e;
+      border-color: #f3d19e;
+    }
+
+    &.is-plain {
+      color: #e6a23c;
+      background-color: #fef6ec;
+      border-color: #f3d19e;
+
+      &.is-disabled, &.is-disabled:hover, &.is-disabled:focus {
+        color: #f3d19e;
+        cursor: not-allowed;
+        background-image: none;
+        background-color: #fdf6ec;
+        border-color: #faecd8;
+      }
+    }
+  }
+
+  &.byte-button-danger {
+    color: #ffffff;
+    background-color: #f56c6c;
+    border: 1px solid #f56c6c;
+
+    &.is-disabled, &.is-disabled:hover, &.is-disabled:focus {
+      color: #ffffff;
+      cursor: not-allowed;
+      background-image: none;
+      background-color: #fab6b6;
+      border-color: #fab6b6;
+    }
+
+    &.is-plain {
+      color: #f56c6c;
+      background-color: #fef0f0;
+      border-color: #fab6b6;
+
+      &.is-disabled, &.is-disabled:hover, &.is-disabled:focus {
+        color: #fab6b6;
+        cursor: not-allowed;
+        background-image: none;
+        background-color: #fef0f0;
+        border-color: #fde2e2;
+      }
+    }
+  }
+}

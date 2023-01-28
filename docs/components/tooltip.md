@@ -5,6 +5,7 @@ lang: zh-CN
 
 <script setup>
 import BasicComp from "../examples/tooltip/01_basic.vue";
+import ThemeComp from "../examples/tooltip/02_theme.vue";
 </script>
 
 
@@ -18,4 +19,11 @@ import BasicComp from "../examples/tooltip/01_basic.vue";
 
 <CodePreview comp-name="tooltip" demo-name="01_basic" demo-type="docs">
 <BasicComp/>
+</CodePreview>
+
+## 主题
+Tooltip 组件内置了两个主题：`dark`和`light`。
+通过设置 `effect` 来修改主题，默认值为 `dark`。
+<CodePreview comp-name="tooltip" demo-name="02_theme" demo-type="docs">
+<ThemeComp/>
 </CodePreview>

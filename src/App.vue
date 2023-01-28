@@ -1,52 +1,28 @@
 <template>
 <div style="width: 100vw; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center">
   HomePage<br/>
-  <ByteTooltip
-      content="hhhh have a try<br/><hr style='height: 0.5px'/>lalala"
-      placement="left-end"
-      :show-arrow="true"
-      effect="light"
-  >
-    <!--    something-->
-    <!--  <button style="background-color: green; ">something</button>  -->
-    <button style="background-color: green; ">something</button>
-
-  </ByteTooltip>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  <ByteTooltip
-      content="hhhh have a try<br/><hr style='height: 0.5px'/>lalala"
-      placement="left-start"
-      :show-arrow="true"
-  >
-    <!--    something-->
-    <!--  <button style="background-color: green; ">something</button>  -->
-    <button style="background-color: green; ">something</button>
-
-  </ByteTooltip>
-
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  <ByteTooltip
-      content="hhhh have a try<br/><hr style='height: 0.5px'/>lalala"
-      placement="left"
-      :show-arrow="true"
-  >
-    <!--    something-->
-    <!--  <button style="background-color: green; ">something</button>  -->
-    <button style="background-color: green; ">something</button>
-
-  </ByteTooltip>
+  <byte-button :icon="Search" circle />
+  <byte-button type="primary" :icon="Edit" circle />
+  <byte-button type="success" :icon="Check" circle />
+  <byte-button type="info" :icon="Message" circle />
+  <byte-button type="warning" :icon="Star" circle />
+  <byte-button type="danger" :icon="Delete" circle />
+  <button disabled>dddd</button>
 </div>
+
 </template>
 
 <script setup>
-import ByteTooltip from "./components/byte-tooltip/src/tooltip.vue"
+import ByteButton from "./components/byte-button/src/button.vue";
+import {
+  Check,
+  Delete,
+  Edit,
+  Message,
+  Search,
+  Star,
+} from '@element-plus/icons-vue';
+console.log(Check)
 </script>
 
 <style lang="less" scoped>

@@ -33,8 +33,8 @@
   "dependencies": {
     "@byte-ui/components": "workspace:*",
     "@byte-ui/docs": "workspace:*",
-    "@byte-ui/utils": "workspace: *",
     "@byte-ui/hooks": "workspace: *",
+    "@byte-ui/utils": "workspace: *",
     "@element-plus/icons-vue": "^2.0.10",
     "@highlightjs/vue-plugin": "^2.1.0",
     "@popperjs/core": "^2.11.6",

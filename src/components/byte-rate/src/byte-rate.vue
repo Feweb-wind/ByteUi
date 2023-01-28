@@ -22,7 +22,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import byteIcon from '@/components/byte-icon.vue'
+import byteIcon from '@/components/byte-icon/src/byte-icon.vue'
 import { Message, Star, StarFilled } from '@element-plus/icons-vue';
 import {computed, ref, StyleValue} from 'vue'
 import {rateProps,rateEmits} from './rate'
