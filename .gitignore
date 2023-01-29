@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # 辅助样式文件
-assets/style.less
+src/assets/style.less
