@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <script setup lang="ts">
 import ByteSlider from './components/byte-slider.vue'
 import { ref  } from "vue";
@@ -16,18 +17,18 @@ let modelValue = ref(0)
   <ByteSlider disabled />
   <ByteSlider v-model="modelValue" :step="2" />
   <p>{{ modelValue }}</p>
+=======
+<template>
+HomePage
+  <ByteBorder/>
+>>>>>>> main
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+<script setup>
+import ByteBorder from "./components/byte-border/src/border.vue"
+</script>
+
+<style lang="less" scoped>
+
+
 </style>
