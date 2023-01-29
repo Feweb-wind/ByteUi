@@ -25,3 +25,4 @@ dist-ssr
 
 # 辅助样式文件
 src/assets/style.less
+src/App.vue
