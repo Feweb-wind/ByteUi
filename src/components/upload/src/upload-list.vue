@@ -103,7 +103,7 @@
   </transition-group>
 </template>
 <script lang="ts" setup>
-import byteIcon from '@/components/byte-icon.vue'
+import {ByteIcon} from '@byte-ui/components'
 import { ref } from 'vue'
 import {
   Check,
@@ -113,7 +113,7 @@ import {
   Document,
   ZoomIn,
 } from '@element-plus/icons-vue'
-import { useNamespace } from '@/hooks'
+import { useNamespace } from '@byte-ui/hooks'
 
 import { uploadListEmits, uploadListProps } from './upload-list'
 import type { UploadFile } from './upload'
