@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 <script setup lang="ts">
-import ByteSlider from './components/byte-slider.vue'
-import { ref  } from "vue";
-let modelValue = ref(0)
+import ByteSrollbar from './components/scrollbar/index'
 </script>
 
 <template>
@@ -14,44 +11,7 @@ let modelValue = ref(0)
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <ByteSlider disabled />
-  <ByteSlider v-model="modelValue" :step="2" />
-  <p>{{ modelValue }}</p>
-=======
-<template>
-<<<<<<< HEAD
-HomePage
-  <ByteBorder/>
->>>>>>> main
-=======
-<div style="width: 100vw; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center">
-  HomePage<br/>
-  <byte-button :icon="Search" circle />
-  <byte-button type="primary" :icon="Edit" circle />
-  <byte-button type="success" :icon="Check" circle />
-  <byte-button type="info" :icon="Message" circle />
-  <byte-button type="warning" :icon="Star" circle />
-  <byte-button type="danger" :icon="Delete" circle />
-  <button disabled>dddd</button>
-</div>
-
->>>>>>> 38286a2f85d5f162302e7d0dde7f7b1efcb1d45c
+  <ByteSrollbar height="200px" always>
+    <p v-for="item in 20"> {{ item }}新年快乐，兔年大吉！</p>
+  </ByteSrollbar>
 </template>
-
-<script setup>
-import ByteButton from "./components/byte-button/src/button.vue";
-import {
-  Check,
-  Delete,
-  Edit,
-  Message,
-  Search,
-  Star,
-} from '@element-plus/icons-vue';
-console.log(Check)
-</script>
-
-<style lang="less" scoped>
-
-
-</style>

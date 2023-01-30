@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <!-- 滑动条 -->
+    <!-- 滑轨 -->
     <div
       v-show="always || visible"
       ref="instance"
@@ -19,29 +19,19 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, onBeforeUnmount, ref, toRef } from "vue";
+import { computed, inject, onBeforeUnmount, ref, toRef,CSSProperties } from "vue";
+import { thumbProps, renderThumbStyle, BAR_MAP } from "./thumb";
 import {
-  BAR_MAP,
-  renderThumbStyle,
   scrollbarContextKey,
   type ScrollbarContext,
   isClient,
   useEventListener,
 } from "./util";
 
-const props = defineProps({
-  vertical: Boolean,
-  size: String,
-  move: Number,
-  ratio: {
-    type: Number,
-    required: true,
-  },
-  always: Boolean,
-});
+
+const props = defineProps(thumbProps);
 
 const scrollbar = inject(scrollbarContextKey) as ScrollbarContext;
-
 if (!scrollbar) Promise.reject("can not inject scrollbar context");
 
 const instance = ref<HTMLDivElement>();
@@ -85,6 +75,8 @@ const barClass = computed(() => {
     },
   ];
 });
+
+
 
 // 滑块拖拽入口，鼠标按下
 const clickThumbHandler = (e: MouseEvent) => {

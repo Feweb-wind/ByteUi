@@ -41,7 +41,11 @@ import {
   useResizeObserver,
   BarInstance,
 } from "./util";
-import Bar from "./byte-bar.vue";
+import Bar from "./bar.vue";
+
+defineOptions({
+  name:'ByteScrollbar'
+});
 
 const props = defineProps({
   /**

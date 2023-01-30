@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { GAP } from "./util";
-import ByteThumb from "./byte-thumb.vue";
+import ByteThumb from "./thumb.vue";
 
 const props = defineProps({
   always: {
