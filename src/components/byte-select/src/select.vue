@@ -21,15 +21,11 @@
 
 </template>
 
-<script lang="ts">
-export default {
-  name: "byte-select"
-}
-</script>
-
 <script lang="ts" setup>
 import {defineProps, ref} from "vue";
-
+defineOptions({
+  name: 'ByteSelect'
+});
 const props = defineProps({
   options: {
     type: Array,

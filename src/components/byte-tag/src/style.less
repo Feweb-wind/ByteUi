@@ -156,3 +156,28 @@
 .byte-tag-small {
   height: 18px;
 }
+
+。byte-tag-hit {
+  border: none !important;
+}
+
+.byte-tag-content {
+  display: flex;
+  //justify-content: space-between;
+  i {
+    display: inline-block;
+    margin-left: 7px;
+    margin-right: -5px;
+    cursor: pointer;
+  }
+}
+
+.byte-tag-zoom-in-center-enter-active,
+.byte-tag-zoom-in-center-leave-active {
+  transition: all getCssVar('transition-duration') cubic-bezier(0.55, 0, 0.1, 1);
+}
+.byte-tag-zoom-in-center-enter-from,
+.byte-tag-zoom-in-center-leave-active {
+  opacity: 0;
+  transform: scaleX(0);
+}

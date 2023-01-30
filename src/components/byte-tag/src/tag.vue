@@ -5,25 +5,60 @@
       :style="{ backgroundColor: color }"
       @click="handleClick"
   >
-    <span><slot></slot></span>
-    <span v-if="closable" @click.stop="handleClose">×</span>
+    <span class="byte-tag-content">
+        <slot></slot>
+        <byte-icon
+            v-if="closable"
+            @click.stop="handleClose"
+
+        >
+          <Close/>
+        </byte-icon>
+      <byte-icon
+          v-if="closable"
+          v-show="!visible"
+          @click.stop="handleClose"
+          @mouseleave="changeVisible"
+      >
+          <CircleCloseFilled/>
+        </byte-icon>
+    </span>
   </span>
 
-  <transition v-else appear>
+  <transition name="byte-tag-zoom-in-enter" v-else appear>
     <span
         :class="className"
         :style="{ backgroundColor: color }"
         @click="handleClick"
     >
-      <span><slot></slot></span>
-    <span v-if="closable" @click.stop="handleClose">×</span>
+      <span class="byte-tag-content">
+        <slot></slot>
+        <byte-icon
+            v-if="closable"
+            v-show="visible"
+            @click.stop="handleClose"
+            @mouseenter="changeVisible"
+        >
+          <Close/>
+        </byte-icon>
+        <byte-icon
+            v-if="closable"
+            v-show="!visible"
+            @click.stop="handleClose"
+            @mouseleave="changeVisible"
+        >
+          <CircleCloseFilled/>
+        </byte-icon>
+      </span>
     </span>
   </transition>
 </template>
 
 <script lang="ts" setup>
-import {computed} from "vue";
+import {computed, ref} from "vue";
 import {tagEmits, tagProps} from "./tag.ts";
+import {ByteIcon} from "@byte-ui/components";
+import {Close, CircleCloseFilled} from "@element-plus/icons-vue";
 
 defineOptions({
   name: 'ByteTag',
@@ -40,9 +75,13 @@ const className = computed(() => {
   const effect: string = props.effect === "" ? ` byte-tag-light` : ` byte-tag-${props.effect}`;
   // round: true, false
   const round: string = props.round ? ` byte-tag-round` : ``;
+  // hit: true false 是否有边框描边
+  const hit: string = props.hit ? `byte-tag-hit` : ``;
 
-  return type + size + effect + round;
+  return type + size + effect + round + hit;
 });
+
+const visible = ref<boolean>(true);
 
 const handleClose = (event: MouseEvent) => {
   emit('close', event);
@@ -50,6 +89,10 @@ const handleClose = (event: MouseEvent) => {
 
 const handleClick = (event: MouseEvent) => {
   emit('click', event)
+}
+
+const changeVisible = () => {
+  visible.value = !visible.value;
 }
 
 </script>

@@ -6,5 +6,5 @@ import './style.css';
 import App from './App.vue';
 
 const app = createApp(App);
-// app.use(hljsVuePlugin);
+// app.component("hljsVuePlugin", hljsVuePlugin);
 app.mount('#app');

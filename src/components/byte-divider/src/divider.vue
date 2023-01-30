@@ -15,10 +15,12 @@
 </template>
 
 <script lang="ts" setup>
-import {dividerProps} from "@/components/byte-divider/src/divider.ts";
+import {dividerProps} from "./divider.ts";
 import {computed, ref} from "vue";
 const props = defineProps(dividerProps);
-
+defineOptions({
+  name: 'ByteDivider',
+});
 // 决定是水平 还是 垂直 分割线
 const direct = computed(() => props.direction === "horizontal" ? "byte-divider-horizontal" : "byte-divider-vertical");
 // pos: 分割线文字的位置【left, right, center】

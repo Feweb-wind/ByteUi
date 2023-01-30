@@ -7,6 +7,10 @@
 <script lang="ts" setup>
 import { computed, CSSProperties } from 'vue'
 
+defineOptions({
+  name: 'ByteIcon',
+});
+
 const props = defineProps<{
   size?: number | string
   color?: string
