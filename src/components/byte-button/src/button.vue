@@ -6,17 +6,27 @@
     ]"
       class="byte-button"
   >
-    <slot></slot>
+    <template v-if="loading">
+      <slot v-if="$slots.loading" name="loading"/>
+      <byte-icon v-else :class="loadingClass">
+        <component :is="loadingIcon"/>
+      </byte-icon>
+    </template>
     <byte-icon v-if="icon">
       <component :is="icon"/>
       <slot name="icon"></slot>
     </byte-icon>
+    <span
+        v-if="$slots.default"
+    >
+      <slot />
+    </span>
   </button>
 </template>
 
 <script lang="ts" setup>
 import {buttonEmits, buttonProps} from "./button.ts";
-import ByteIcon from "../../byte-icon/src/byte-icon.vue"
+import {ByteIcon} from "@byte-ui/components";
 
 defineOptions({
   name: 'ByteButton',
@@ -31,9 +41,9 @@ const roundClass = props.round ? "is-round" : "";
 const disabledClass = props.disabled ? "is-disabled" : "";
 const textClass = "";
 const bgClass = "";
-const linkClass = "";
+const linkClass = props.link ? "is-link" : "";
 const circleClass = props.circle ? "is-circle" : "";
-const loadingClass = "";
+const loadingClass = props.loading ? "is-loading" : "";
 
 </script>
 

@@ -57,7 +57,7 @@
 <script lang="ts" setup>
 import {computed, ref} from "vue";
 import {tagEmits, tagProps} from "./tag.ts";
-import ByteIcon from "../../byte-icon/src/byte-icon.vue";
+import {ByteIcon} from "@byte-ui/components";
 import {Close, CircleCloseFilled} from "@element-plus/icons-vue";
 
 defineOptions({

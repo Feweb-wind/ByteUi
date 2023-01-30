@@ -1,4 +1,5 @@
 import type {Component, PropType} from "vue";
+import { Loading } from '@element-plus/icons-vue';
 const definePropType = <T>(val: any): PropType<T> => val;
 const iconPropType = definePropType<string | Component>([
     String,
@@ -28,7 +29,7 @@ export const buttonProps = {
     loadingIcon: {
         // @ts-ignore
         type: iconPropType,
-        default: "Loading"
+        default: Loading
     },
     disabled: Boolean,
     icon: {
