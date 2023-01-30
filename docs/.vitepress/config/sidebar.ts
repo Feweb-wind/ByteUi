@@ -12,6 +12,7 @@ export default {
             items: [
                 {text: 'Button 按钮', link: '/components/button'},
                 {text: 'Tag 标签', link: '/components/tag'},
+                {text: 'Tooltip 文字提示', link: '/components/tooltip'},
             ]
         },
         {
@@ -31,7 +32,7 @@ export default {
         {
             text: 'Others 其他',
             items: [
-                {text: 'Divider 分割线', link: '/component/divider'},
+                {text: 'Divider 分割线', link: '/components/divider'},
             ]
         }
     ],

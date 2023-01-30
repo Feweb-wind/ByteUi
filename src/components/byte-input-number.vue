@@ -56,7 +56,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import ByteInput from './byte-input.vue'
-import ByteIcon from './byte-icon.vue'
+import ByteIcon from './byte-icon/src/icon.vue'
 import { Minus, Plus, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 
 // 属性列表

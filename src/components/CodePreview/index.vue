@@ -47,7 +47,7 @@ async function getSourceCode() {
     sourceCode.value = (await import( /* @vite-ignore */
         `../../../docs/examples/${props.compName}/${props.demoName}.vue?raw`
         )).default;
-    console.log(sourceCode.value)
+    // console.log(sourceCode.value)
   }
   //`docs/examples/${props.compName}/${props.demoName}.vue?raw`
   else {

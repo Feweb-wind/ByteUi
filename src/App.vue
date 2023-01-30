@@ -19,13 +19,36 @@ let modelValue = ref(0)
   <p>{{ modelValue }}</p>
 =======
 <template>
+<<<<<<< HEAD
 HomePage
   <ByteBorder/>
 >>>>>>> main
+=======
+<div style="width: 100vw; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center">
+  HomePage<br/>
+  <byte-button :icon="Search" circle />
+  <byte-button type="primary" :icon="Edit" circle />
+  <byte-button type="success" :icon="Check" circle />
+  <byte-button type="info" :icon="Message" circle />
+  <byte-button type="warning" :icon="Star" circle />
+  <byte-button type="danger" :icon="Delete" circle />
+  <button disabled>dddd</button>
+</div>
+
+>>>>>>> 38286a2f85d5f162302e7d0dde7f7b1efcb1d45c
 </template>
 
 <script setup>
-import ByteBorder from "./components/byte-border/src/border.vue"
+import ByteButton from "./components/byte-button/src/button.vue";
+import {
+  Check,
+  Delete,
+  Edit,
+  Message,
+  Search,
+  Star,
+} from '@element-plus/icons-vue';
+console.log(Check)
 </script>
 
 <style lang="less" scoped>
