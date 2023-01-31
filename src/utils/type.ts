@@ -3,5 +3,5 @@ export const isElement = (e: unknown): e is Element => {
   return e instanceof Element;
 };
 
-export { isNumber, isString, isFunction } from "lodash-unified";
+export { isNumber, isString, isFunction, isBoolean } from "lodash-unified";
 export { isVNode } from "vue";
