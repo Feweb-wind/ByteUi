@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import ByteSrollbar from './components/scrollbar/index'
+import ByteSrollbar from './components/scrollbar/index';
+import ByteSider from './components/slider/index';
+import { ref } from "vue";
+let modelValue = ref(0);
 </script>
 
 <template>
@@ -11,7 +14,12 @@ import ByteSrollbar from './components/scrollbar/index'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
+  <ByteSider v-model="modelValue"/>
+  <p>{{ modelValue }}</p>
   <ByteSrollbar height="200px" always>
     <p v-for="item in 20"> {{ item }}新年快乐，兔年大吉！</p>
   </ByteSrollbar>
 </template>
+
+<style lang="less" scoped>
+</style>
