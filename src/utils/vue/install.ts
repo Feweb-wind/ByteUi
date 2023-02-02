@@ -26,3 +26,4 @@ export const withNoopInstall = <T>(component: T) => {
 
     return component as SFCWithInstall<T>
 }
+

@@ -20,7 +20,8 @@
     "src/byte-ui",
     "src/utils",
     "src/hooks",
-    "src/tokens"
+    "src/tokens",
+    "src/constants"
   ],
   "scripts": {
     "dev": "vite",
@@ -31,17 +32,19 @@
     "docs:serve": "vitepress serve docs"
   },
   "dependencies": {
+    "@vueuse/core": "^9.11.1",
+    "@element-plus/icons-vue": "^2.0.10",
+    "axios": "^1.2.3",
+    "lodash-unified": "^1.0.3",
     "@byte-ui/components": "workspace:*",
     "@byte-ui/docs": "workspace:*",
     "@byte-ui/hooks": "workspace: *",
     "@byte-ui/utils": "workspace: *",
-    "@element-plus/icons-vue": "^2.0.10",
+    "@byte-ui/constants": "workspace: *",
     "@highlightjs/vue-plugin": "^2.1.0",
     "@popperjs/core": "^2.11.6",
-    "axios": "^1.2.3",
     "byte-ui": "workspace:*",
     "highlight.js": "^11.7.0",
-    "lodash-unified": "^1.0.3",
     "vue": "^3.2.45"
   },
   "devDependencies": {

@@ -113,7 +113,7 @@ function valueChange(newValue: number | string) {
   // 如果超出范围处理
   if (props.max && value.value > props.max) {
     value.value = props.max
-  } else if (props.min && value.value < props.min) {
+  } else if (props.min!==Number.NEGATIVE_INFINITY && value.value < props.min) {
     value.value = props.min
   } else if (props.stepStrictly && value.value % props.step !== 0) {
     // 如果设置了 step 的倍数
