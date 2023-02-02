@@ -1,4 +1,4 @@
-import ByteSlider from './src/myslider.vue';
+import ByteSlider from './src/slider.vue';
 
 
 export default ByteSlider 

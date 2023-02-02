@@ -1,8 +1,8 @@
 <template>
   <!-- 横向 -->
-  <ByteThumb :move="moveX" :ratio="ratioX" :size="width" :always="always" />
+  <byte-thumb :move="moveX" :ratio="ratioX" :size="width" :always="always" />
   <!-- 纵向 -->
-  <ByteThumb
+  <byte-thumb
     :move="moveY"
     :ratio="ratioY"
     :size="height"

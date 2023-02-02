@@ -1,39 +1,15 @@
-import { placements } from '@popperjs/core'
-import {
-  buildProps,
-  definePropType,
-  isArray,
-  isNumber,
-} from '@element-plus/utils'
-import {
-  CHANGE_EVENT,
-  INPUT_EVENT,
-  UPDATE_MODEL_EVENT,
-} from '@element-plus/constants'
-import { useSizeProp } from '@element-plus/hooks'
-import type { Arrayable } from '@element-plus/utils'
-import type { ComputedRef, ExtractPropTypes, InjectionKey, Ref, ToRefs } from 'vue'
-import type { SliderMarkerProps } from './marker'
-import type Slider from './slider.vue'
+import { placements } from '@popperjs/core';
+import { isNumber } from '@vueuse/core';
+import { ExtractPropTypes } from 'vue';
 
-type SliderMarks = Record<number, string | SliderMarkerProps['mark']>
+export const UPDATE_MODEL_EVENT = 'update:modelValue'
+export const INPUT_EVENT = 'input'
+export const CHANGE_EVENT = 'change'
 
-export interface SliderInitData {
-  firstValue: number
-  secondValue: number
-  oldValue?: Arrayable<number>
-  dragging: boolean
-  sliderSize: number
-}
-
-export const sliderProps = buildProps({
+export const sliderProps = {
   modelValue: {
-    type: definePropType<Arrayable<number>>([Number, Array]),
+    type: Number,
     default: 0,
-  },
-  id: {
-    type: String,
-    default: undefined,
   },
   min: {
     type: Number,
@@ -47,24 +23,10 @@ export const sliderProps = buildProps({
     type: Number,
     default: 1,
   },
-  showInput: Boolean,
-  showInputControls: {
+  disabled: {
     type: Boolean,
-    default: true,
+    default: false,
   },
-  size: useSizeProp,
-  inputSize: useSizeProp,
-  showStops: Boolean,
-  showTooltip: {
-    type: Boolean,
-    default: true,
-  },
-  formatTooltip: {
-    type: definePropType<(val: number) => number | string>(Function),
-    default: undefined,
-  },
-  disabled: Boolean,
-  range: Boolean,
   vertical: {
     type: Boolean,
     default: false,
@@ -74,61 +36,49 @@ export const sliderProps = buildProps({
     type: Number,
     default: 300,
   },
-  label: {
+  // range: Boolean,
+  showInput: {
+    type: Boolean,
+    default: false,
+  },
+  // showInputControls: {
+  //   type: Boolean,
+  //   default: true,
+  // },
+  size: {
     type: String,
-    default: undefined,
+    default: 'default',
+    values: ['small', 'default', 'large'],
   },
-  rangeStartLabel: {
-    type: String,
-    default: undefined,
+  // inputSize: useSizeProp,
+  showStops: Boolean,
+  showTooltip: {
+    type: Boolean,
+    default: true,
   },
-  rangeEndLabel: {
-    type: String,
-    default: undefined,
-  },
-  formatValueText: {
-    type: definePropType<(val: number) => string>(Function),
-    default: undefined,
-  },
-  tooltipClass: {
-    type: String,
-    default: undefined,
-  },
+  // formatTooltip: {
+  //   type: definePropType<(val: number) => number | string>(Function),
+  //   default: undefined,
+  // },
+  // tooltipClass: {
+  //   type: String,
+  //   default: undefined,
+  // },
   placement: {
     type: String,
     values: placements,
     default: 'top',
   },
-  marks: {
-    type: definePropType<SliderMarks>(Object),
-  },
-  validateEvent: {
-    type: Boolean,
-    default: true,
-  },
-} as const)
+};
+
 export type SliderProps = ExtractPropTypes<typeof sliderProps>
 
-const isValidValue = (value: Arrayable<number>) =>
-  isNumber(value) || (isArray(value) && value.every(isNumber))
-export const sliderEmits = {
+// 设置类型校验
+const isValidValue = (value: number) => isNumber(value)
+export const SliderEmits = {
   [UPDATE_MODEL_EVENT]: isValidValue,
   [INPUT_EVENT]: isValidValue,
   [CHANGE_EVENT]: isValidValue,
-}
-export type SliderEmits = typeof sliderEmits
+};
 
-export type SliderInstance = InstanceType<typeof Slider>
-
-
-
-export interface SliderContext extends ToRefs<SliderProps> {
-  precision: ComputedRef<number>
-  sliderSize: Ref<number>
-  emitChange: () => void
-  resetSize: () => void
-  updateDragging: (val: boolean) => void
-}
-
-export const sliderContextKey: InjectionKey<SliderContext> =
-  Symbol('sliderContextKey')
+export type SliderEmits = typeof SliderEmits;

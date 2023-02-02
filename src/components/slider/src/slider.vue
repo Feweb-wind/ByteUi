@@ -1,231 +1,158 @@
 <template>
-  <div
-    :id="range ? inputId : undefined"
-    ref="sliderWrapper"
-    :class="sliderKls"
-    :role="range ? 'group' : undefined"
-    :aria-label="range && !isLabeledByFormItem ? groupLabel : undefined"
-    :aria-labelledby="
-      range && isLabeledByFormItem ? elFormItem?.labelId : undefined
-    "
-    @touchstart="onSliderWrapperPrevent"
-    @touchmove="onSliderWrapperPrevent"
-  >
+  <div :class="sliderClass">
+    <!-- 滑轨 -->
     <div
       ref="slider"
-      :class="[
-        ns.e('runway'),
-        { 'show-input': showInput && !range },
-        ns.is('disabled', sliderDisabled),
-      ]"
+      :class="runwayClass"
       :style="runwayStyle"
-      @mousedown="onSliderDown"
-      @touchstart="onSliderDown"
+      @mousedown="updatePosByMouseEvent"
     >
-      <div :class="ns.e('bar')" :style="barStyle" />
+      <!-- 已划过的滑轨 -->
+      <div class="slider_bar" :style="barStyle"></div>
+      <!-- 标记圆点 -->
       <slider-button
-        :id="!range ? inputId : undefined"
-        ref="firstButton"
-        :model-value="firstValue"
+        :model-value="modelValue"
         :vertical="vertical"
-        :tooltip-class="tooltipClass"
+        :disabled="disabled"
+        :showTooltip="showTooltip"
         :placement="placement"
-        role="slider"
-        :aria-label="
-          range || !isLabeledByFormItem ? firstButtonLabel : undefined
-        "
-        :aria-labelledby="
-          !range && isLabeledByFormItem ? elFormItem?.labelId : undefined
-        "
-        :aria-valuemin="min"
-        :aria-valuemax="range ? secondValue : max"
-        :aria-valuenow="firstValue"
-        :aria-valuetext="firstValueText"
-        :aria-orientation="vertical ? 'vertical' : 'horizontal'"
-        :aria-disabled="sliderDisabled"
-        @update:model-value="setFirstValue"
+        @update="updatePosByMouseEvent"
       />
-      <slider-button
-        v-if="range"
-        ref="secondButton"
-        :model-value="secondValue"
-        :vertical="vertical"
-        :tooltip-class="tooltipClass"
-        :placement="placement"
-        role="slider"
-        :aria-label="secondButtonLabel"
-        :aria-valuemin="firstValue"
-        :aria-valuemax="max"
-        :aria-valuenow="secondValue"
-        :aria-valuetext="secondValueText"
-        :aria-orientation="vertical ? 'vertical' : 'horizontal'"
-        :aria-disabled="sliderDisabled"
-        @update:model-value="setSecondValue"
-      />
+      <!-- 显示断点 -->
       <div v-if="showStops">
         <div
-          v-for="(item, key) in stops"
-          :key="key"
-          :class="ns.e('stop')"
+          v-for="item in stops"
+          class="slider_stop"
           :style="getStopStyle(item)"
         />
       </div>
-      <template v-if="markList.length > 0">
-        <div>
-          <div
-            v-for="(item, key) in markList"
-            :key="key"
-            :style="getStopStyle(item.position)"
-            :class="[ns.e('stop'), ns.e('marks-stop')]"
-          />
-        </div>
-        <div :class="ns.e('marks')">
-          <slider-marker
-            v-for="(item, key) in markList"
-            :key="key"
-            :mark="item.mark"
-            :style="getStopStyle(item.position)"
-          />
-        </div>
-      </template>
     </div>
+    <!-- 携带输入框 -->
+    <byte-input-number
+      v-if="showInput"
+      :max="max"
+      :min="min"
+      :step="step"
+      :modelValue="modelValue"
+      :size="size"
+      @update:model-value="updateValByInput"
+    />
   </div>
 </template>
 
-<script lang="ts" setup>
-import { computed, provide, reactive, toRefs } from 'vue'
-import {
-  useFormItemInputId,
-  useLocale,
-  useNamespace,
-  useSize,
-} from '@element-plus/hooks'
-import { sliderContextKey } from '@element-plus/tokens'
-import { sliderEmits, sliderProps } from './slider'
-import SliderButton from './button.vue'
-import SliderMarker from './marker'
-import {
-  useLifecycle,
-  useMarks,
-  useSlide,
-  useStops,
-  useWatch,
-} from './composables'
-import type { SliderInitData } from './slider'
+<script setup lang="ts">
+import { computed, provide, shallowRef } from "vue";
+import { useSlide, useStops } from "./use-slide";
+import SliderButton from "./slider-button.vue";
+import { SliderEmits, sliderProps } from "./slider";
+import { ByteInputNumber } from "@/components/input-number/index";
 
-const props = defineProps(sliderProps)
-const emit = defineEmits(sliderEmits)
+defineOptions({
+  name: "ByteSlider",
+});
 
-const ns = useNamespace('slider')
-const { t } = useLocale()
+const props = defineProps(sliderProps);
+const slider = shallowRef<HTMLElement>();
+const emit = defineEmits(SliderEmits);
 
-const initData = reactive<SliderInitData>({
-  firstValue: 0,
-  secondValue: 0,
-  oldValue: 0,
-  dragging: false,
-  sliderSize: 1,
-})
+const sliderClass = computed(() => {
+  return [
+    "byte-slider",
+    {
+      "byte-slider-disable": props.disabled,
+    },
+    {
+      "is-vertical": props.vertical,
+    },
+  ];
+});
 
-const {
-  elFormItem,
-  slider,
-  firstButton,
-  secondButton,
-  sliderDisabled,
-  minValue,
-  maxValue,
-  runwayStyle,
-  barStyle,
-  resetSize,
-  emitChange,
-  onSliderWrapperPrevent,
-  onSliderClick,
-  onSliderDown,
-  setFirstValue,
-  setSecondValue,
-} = useSlide(props, initData, emit)
+const runwayClass = computed(() => {
+  return [
+    "slider_runway",
+    {
+      "show-input": props.showInput,
+    },
+  ];
+});
 
-const { stops, getStopStyle } = useStops(props, initData, minValue, maxValue)
+const { barStyle, runwayStyle, btnWrapStyle, updatePosByMouseEvent, updateValByInput } =
+  useSlide(props, slider, emit);
 
-const { inputId, isLabeledByFormItem } = useFormItemInputId(props, {
-  formItemContext: elFormItem,
-})
+// 间断点
+const { stops, getStopStyle } = useStops(props);
 
-const sliderWrapperSize = useSize()
+//
+provide("SliderKey", btnWrapStyle);
+</script>
 
-const groupLabel = computed<string>(() => {
-  return (
-    props.label ||
-    t('el.slider.defaultLabel', {
-      min: props.min,
-      max: props.max,
-    })
-  )
-})
+<style lang="less" scoped>
+.byte-slider {
+  // background-color: #ccc;
+  width: 100%;
+  height: 32px;
+  // padding: 5px 0;
+  display: flex;
+  align-items: center;
 
-const firstButtonLabel = computed<string>(() => {
-  if (props.range) {
-    return props.rangeStartLabel || t('el.slider.defaultRangeStartLabel')
-  } else {
-    return groupLabel.value
+  &.is-vertical {
+    position: relative;
+    display: inline-flex;
+    width: auto;
+    height: 100%;
+    flex: 0;
+
+    .slider_runway {
+      width: 6px;
+      height: 100%;
+      margin: 0 16px;
+    }
+
+    .slider_btn-wrapper {
+      top: auto;
+      left: -15px;
+      transform: translateY(50%);
+    }
   }
-})
+  .slider_runway {
+    flex: 1;
+    height: 6px;
+    background-color: #e4e7ed;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
 
-const firstValueText = computed<string>(() => {
-  return props.formatValueText
-    ? props.formatValueText(firstValue.value)
-    : `${firstValue.value}`
-})
+    .slider_bar {
+      // 根据位置动态设置宽度或高度
+      width: 100%;
+      height: 100%;
+      background-color: #409eff;
+      border-radius: 3px;
+      position: absolute;
+    }
 
-const secondButtonLabel = computed<string>(() => {
-  return props.rangeEndLabel || t('el.slider.defaultRangeEndLabel')
-})
+    // 间断点样式
+    .slider_stop {
+      position: absolute;
+      height: 6px;
+      width: 6px;
+      border-radius: 100%;
+      background-color: white;
+      transform: translate(-50%);
+    }
 
-const secondValueText = computed<string>(() => {
-  return props.formatValueText
-    ? props.formatValueText(secondValue.value)
-    : `${secondValue.value}`
-})
-
-const sliderKls = computed(() => [
-  ns.b(),
-  ns.m(sliderWrapperSize.value),
-  ns.is('vertical', props.vertical),
-  { [ns.m('with-input')]: props.showInput },
-])
-
-const markList = useMarks(props)
-
-useWatch(props, initData, minValue, maxValue, emit, elFormItem!)
-
-const precision = computed(() => {
-  const precisions = [props.min, props.max, props.step].map((item) => {
-    const decimal = `${item}`.split('.')[1]
-    return decimal ? decimal.length : 0
-  })
-  return Math.max.apply(null, precisions)
-})
-
-const { sliderWrapper } = useLifecycle(props, initData, resetSize)
-
-const { firstValue, secondValue, sliderSize } = toRefs(initData)
-
-const updateDragging = (val: boolean) => {
-  initData.dragging = val
+    // 输入框样式
+    &.show-input {
+      margin-right: 30px;
+      width: auto;
+    }
+  }
 }
 
-provide(sliderContextKey, {
-  ...toRefs(props),
-  sliderSize,
-  disabled: sliderDisabled,
-  precision,
-  emitChange,
-  resetSize,
-  updateDragging,
-})
-
-defineExpose({
-  onSliderClick,
-})
-</script>
+// 控制禁用样式
+.byte-slider-disable {
+  .slider_runway {
+    cursor: default;
+  }
+}
+</style>
