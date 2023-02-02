@@ -96,6 +96,8 @@ export const useSlide = (props: SliderProps, slider: ShallowRef<HTMLElement | un
     if (realPosition !== props.modelValue) {
       // 触发事件
       emit(UPDATE_MODEL_EVENT, realPosition);
+      emit(INPUT_EVENT, realPosition);
+      emit(CHANGE_EVENT, realPosition);
     }
   };
 
