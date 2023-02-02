@@ -6,7 +6,7 @@
       @mouseleave="dealMouseLeave"
       ref="byteTooltipSlot"
   >
-    <slot/>
+    <slot name="default"></slot>
   </div>
   <div
       class="byte-tooltip"
@@ -14,6 +14,7 @@
       ref="byteTooltipContainer"
       v-if="visible"
       aria-describedby="tooltip"
+      :style="attrs.style"
   >
     <slot name="content">
       <span v-if="rawContent" v-html="content"/>
@@ -30,15 +31,16 @@
 </template>
 
 <script lang="ts" setup>
-import {tooltipProps} from "./tooltip";
-import {computed, onMounted, ref} from "vue";
+import {tooltipProps} from "./tooltip.ts";
+import {computed, onMounted, ref, useAttrs} from "vue";
 import {createPopper} from "@popperjs/core";
 import type {Placement} from "@popperjs/core";
 
 defineOptions({
   name: 'ByteTooltip'
 });
-
+// attrs存储未被props接收的属性，eg. popperjs的额外的一些属性 => style之类的
+const attrs = useAttrs();
 const props = defineProps(tooltipProps);
 const byteTooltipSlot = ref<HTMLElement>();
 const byteTooltipContainer = ref<HTMLElement>();
@@ -54,7 +56,21 @@ const effectClass = computed(() => {
 const dealClick = () => {
   console.log("enter");
   (byteTooltipContainer.value as HTMLElement).style.visibility = "visible";
-  (byteTooltipArrow.value as HTMLElement).style.visibility = "visible";
+  (byteTooltipArrow.value as HTMLElement).classList.remove("byte-tooltip-arrow2");
+}
+
+const dealMouseEnter = () => {
+  if (props.trigger === "hover") {
+    (byteTooltipContainer.value as HTMLElement).style.visibility = "visible";
+    (byteTooltipArrow.value as HTMLElement).classList.remove("byte-tooltip-arrow2");
+  }
+}
+
+const dealMouseLeave = () => {
+  if (props.trigger === "hover") {
+    (byteTooltipContainer.value as HTMLElement).style.visibility = "hidden";
+    (byteTooltipArrow.value as HTMLElement).classList.add("byte-tooltip-arrow2");
+  }
 }
 
 onMounted(() => {
@@ -74,20 +90,6 @@ onMounted(() => {
       }
   )
 });
-
-const dealMouseEnter = () => {
-  if (props.trigger === "hover") {
-    (byteTooltipContainer.value as HTMLElement).style.visibility = "visible";
-    (byteTooltipArrow.value as HTMLElement).classList.remove("byte-tooltip-arrow2");
-  }
-}
-
-const dealMouseLeave = () => {
-  if (props.trigger === "hover") {
-    (byteTooltipContainer.value as HTMLElement).style.visibility = "hidden";
-    (byteTooltipArrow.value as HTMLElement).classList.add("byte-tooltip-arrow2");
-  }
-}
 </script>
 
 <style lang="less" scoped>

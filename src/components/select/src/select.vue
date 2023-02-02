@@ -1,159 +1,96 @@
 <template>
-  <div v-click-outside class="byte-select">
-    <input :disabled="disabled" :placeholder="placeholder"
-           :value="selectVal"
-           readonly
-           type="text"
-    >
-    <transition name="fade">
-      <div v-if="positionShow" class="byte-position-box">
-        <li v-for="(item, index) in options"
-            :key="'select-choice' + index + item.value"
-            :class="{'item-disabled-li': item.disabled, 'item-active-li': activeIndex === index}"
-            class="item-li"
-            @click="changeOption(item, index)"
-        >
-          {{ item[filedLabel] }}
-        </li>
-      </div>
-    </transition>
-  </div>
+<div
+  ref="selectWrapper"
+  class="byte-select-wrapper"
+  @mouseenter="handleMouseEnter"
+  @mouseleave="handleMouseLeave"
+  @click.stop="toggleMenu"
+>
+  <byte-tooltip
+    ref="tooltipRef"
+    :placement="placement"
+    effect="light"
+    trigger="click"
+    style="padding: 0;"
+  >
+    <!-- 输入框 -->
+    <template #default>
+      <byte-input
+          ref="reference"
+          type="text"
+          :size="size"
+          :disabled="disabled"
+          :placeholder="placeholder"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @input="debouncedOnInputChange"
+          @paste="debouncedOnInputChange"
+      >
+        <!-- 输入框前缀图标 -->
+        <template v-if="$slots.prefix" #prefix>
+          <div
+              style="
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+          >
+            <slot name="prefix" />
+          </div>
+        </template>
 
+        <!-- 输入框后缀图标 -->
+        <template #suffix>
+          <byte-icon
+              v-if="iconComponent && !showClose"
+          >
+            <component :is="iconComponent" />
+          </byte-icon>
+          <byte-icon
+              v-if="showClose && clearIcon"
+              @click="handleClearClick"
+          >
+            <component :is="clearIcon" />
+          </byte-icon>
+        </template>
+      </byte-input>
+    </template>
+
+    <!-- 下拉菜单内容 -->
+    <template #content>
+      <byte-select-menu style="padding: 0;">
+        <slot/>
+      </byte-select-menu>
+    </template>
+  </byte-tooltip>
+</div>
 </template>
 
 <script lang="ts" setup>
-import {defineProps, ref} from "vue";
+import {ref, reactive, provide} from "vue";
+import {ByteTooltip, ByteIcon} from "@byte-ui/components";
+// @ts-ignore
+import {selectProps} from "./select.ts";
+import ByteInput from "../../byte-input.vue";
+import ByteSelectMenu from "./select-dropdown.vue";
+import {selectKey} from "./token";
+import {useSelectStates} from "./useSelect";
+
 defineOptions({
   name: 'ByteSelect'
 });
-const props = defineProps({
-  options: {
-    type: Array,
-    default: () => []
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  },
-  // 匹配不同类型的数据，组件传递字段名
-  filedLabel: {
-    type: String,
-    default: 'label'
-  },
-  filedValue: {
-    type: String,
-    default: 'value'
-  },
-  placeholder: String,
-  modelVal: String,
-  placement: {
-    type: String,
-    default: "bottom"
-  }
-});
+const props = defineProps(selectProps);
+const selectWrapper = ref<HTMLElement>();
+const tooltipRef = ref<HTMLElement>();
+const reference = ref<HTMLElement>();
 
-// positionShow: 是否显示下拉选项
-const positionShow = ref<boolean>(false);
-const activeIndex = ref<number>(-1);
-const emit = defineEmits(['change', 'update:modelVal']);
-const selectVal = ref<string|undefined>(props.modelVal);
-// 组件指定默认选择
-props.options?.forEach((item, index) => {
-  if(item[props.filedValue] === props.modelVal) {
-    activeIndex.value = index;
-    selectVal.value = item[props.filedLabel];
-  }
-})
-
-// v + 名称  =>  自定义指令
-const vClickOutside = {
-  beforeMount: function (el: HTMLBaseElement) {
-    let handler = (e: MouseEvent) => {
-      if (!props.disabled) {
-        if (el.contains(e.target as HTMLBaseElement)
-            && (e.target as HTMLBaseElement).className.indexOf('item-li') === -1) {
-          positionShow.value = true;
-        }
-        else {
-          if ((e.target as HTMLBaseElement).className.indexOf('item-disabled-li') === -1) {
-            positionShow.value = false;
-          }
-        }
-      }
-    }
-    document.addEventListener('click', handler);
-  }
-};
-
-const changeOption = (item: Object, index: number) => {
-  if (!item.disabled) {
-    activeIndex.value = index;
-    selectVal.value = item[props.filedLabel];
-    positionShow.value = false;
-    emit('update:modelVal', item[props.filedLabel]);
-    emit('change', item);
-  }
-}
+const states = useSelectStates(props);
+provide(selectKey, reactive({
+  props,
+}))
 </script>
 
 <style lang="less" scoped>
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.fade-enter-from, .fade-leave-to {
-  opacity: 0;
-}
-
-.byte-select {
-  display: inline-block;
-  height: 40px;
-  position: relative;
-  min-width: 250px;
-
-  input {
-    border: 1px solid @border;
-    padding: 8px 10px;
-    outline: none;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .byte-position-box {
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    position: absolute;
-    top: 42px;
-    border: 1px solid @border;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    z-index: 99;
-    background: #ffffff;
-
-    li {
-      list-style: none;
-      line-height: 40px;
-      padding: 0 10px;
-      box-sizing: border-box;
-      cursor: pointer;
-      font-size: 14px;
-
-      &:hover {
-        background: #f0f0f0;
-      }
-    }
-
-    li.item-disabled-li {
-      cursor: no-drop;
-      color: #808080;
-      background: #f0f0f0;
-    }
-
-    .item-active-li {
-      color: @primary;
-      font-weight: bold;
-    }
-  }
-}
+@import "./style.less";
 </style>

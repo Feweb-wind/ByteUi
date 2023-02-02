@@ -16,7 +16,7 @@
        v-if="sourceCodeVisible"
   >
     <div class="example-source">
-      <highlightjs :autodetect="false" :code="sourceCode"></highlightjs>
+      <highlightjs :autodetect="false" :code="sourceCode"/>
     </div>
   </div>
 
@@ -52,7 +52,7 @@ async function getSourceCode() {
   //`docs/examples/${props.compName}/${props.demoName}.vue?raw`
   else {
     sourceCode.value = (await import( /* @vite-ignore */
-        `@/components/${props.compName}/doc/${props.demoName}.vue?raw`
+        `@/components/${props.compName}/docs/${props.demoName}.vue?raw`
         )).default;
   }
 }

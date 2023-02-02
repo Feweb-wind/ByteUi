@@ -8,12 +8,17 @@
   <byte-button type="warning" :icon="Star" circle />
   <byte-button type="danger" :icon="Delete" circle />
   <button disabled>dddd</button>
+
+  <CodePreview comp-name="button" demo-name="01_basic">
+    <button>aaa</button>
+  </CodePreview>
 </div>
 
 </template>
 
 <script setup>
-import ByteButton from "./components/byte-button/src/button.vue";
+import {ByteButton} from "@byte-ui/components";
+import CodePreview from "./components/CodePreview/index.vue"
 import {
   Check,
   Delete,

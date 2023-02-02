@@ -1,6 +1,6 @@
 import {withInstall} from "@byte-ui/utils";
-import ToolTip from "./src/tooltip.vue";
-export const ByteToolTip = withInstall(ToolTip);
+import Tooltip from "./src/tooltip.vue";
+export const ByteTooltip = withInstall(Tooltip);
 
-export default ByteToolTip;
+export default ByteTooltip;
 export * from "./src/tooltip";

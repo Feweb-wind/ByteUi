@@ -6,3 +6,4 @@ export * from './upload'
 export * from "./divider";
 export * from "./tooltip";
 export * from "./icon";
+export * from "./select";

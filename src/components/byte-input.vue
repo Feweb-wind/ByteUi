@@ -72,7 +72,7 @@ const props = defineProps({
   },
   showPassword:{//是否切换密码图标
     type:Boolean,
-    defalut:true
+    default:true
   },
   size:{//大小,medium / small / mini
     type:String,
