@@ -25,7 +25,3 @@ cache
 *.njsproj
 *.sln
 *.sw?
-
-# 
-src/assets/style.less
-src/App.vue
