@@ -1,4 +1,5 @@
 import { computed, CSSProperties, SetupContext, ShallowRef } from "vue";
+import ByteMessage from "@/components/message/index";
 import type { SliderEmits, SliderProps } from "./slider";
 import {
   CHANGE_EVENT,
@@ -118,8 +119,10 @@ export const useSlide = (props: SliderProps, slider: ShallowRef<HTMLElement | un
   // 初始化时修正位置
   const resetPostion = () =>{
     if (props.modelValue < props.min) {
+      // ByteMessage.error("绑定值不能小于设置的最小值！");
       emit(UPDATE_MODEL_EVENT, props.min);
     } else if(props.modelValue > props.max){
+      // ByteMessage.error("绑定值不能大于设置的最大值！");
       emit(UPDATE_MODEL_EVENT, props.max);
     }
   };
