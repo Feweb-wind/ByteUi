@@ -7,7 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 package-lock.json
-yarn.lcok
+yarn.lock
 
 node_modules
 dist

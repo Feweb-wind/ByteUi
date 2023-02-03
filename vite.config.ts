@@ -30,7 +30,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve('./src') // @代替src
+      '@': path.resolve(__dirname, 'src/') // @代替src
     }
   },
   css: {

@@ -20,7 +20,8 @@
     "src/byte-ui",
     "src/utils",
     "src/hooks",
-    "src/tokens"
+    "src/tokens",
+    "src/constants"
   ],
   "scripts": {
     "dev": "vite",
@@ -39,6 +40,7 @@
     "@byte-ui/docs": "workspace:*",
     "@byte-ui/hooks": "workspace: *",
     "@byte-ui/utils": "workspace: *",
+    "@byte-ui/constants": "workspace: *",
     "@highlightjs/vue-plugin": "^2.1.0",
     "@popperjs/core": "^2.11.6",
     "byte-ui": "workspace:*",

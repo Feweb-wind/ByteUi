@@ -1,5 +1,5 @@
 <template>
-  <ByteToolTip
+  <ByteTooltip
     ref="tooltipRef"
     v-bind="$attrs"
     :effect="effect"
@@ -27,13 +27,13 @@
         {{ content }}
       </slot>
     </template>
-  </ByteToolTip>
+  </ByteTooltip>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, unref } from "vue";
 
-import ByteToolTip from "@/components/tooltip";
+import {ByteTooltip} from "@byte-ui/components";
 import { popoverProps } from "./popover";
 defineProps(popoverProps);
 

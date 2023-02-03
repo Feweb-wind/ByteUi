@@ -10,6 +10,13 @@ export default defineConfig({
         },
         lineNumbers: true,
     },
+    locales: {
+        root: {
+            label: "Chinese",
+            lang: "zh"
+        },
+
+    },
     themeConfig: {
         siteTitle: "ByteUI",
         logo: '/images/element-plus-logo.svg',

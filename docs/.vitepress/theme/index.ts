@@ -3,6 +3,7 @@ import hljsVuePlugin from '@highlightjs/vue-plugin';
 import DefaultTheme from 'vitepress/theme';
 import {App} from "vue";
 import ByteUI from "byte-ui";
+import 'highlight.js/styles/lightfair.css'
 
 export default {
     ...DefaultTheme,
