@@ -5,8 +5,8 @@
         <p v-for="item in 20">{{ item }}新年快乐，兔年大吉！</p>
       </div>
     </ByteScrollbar>
-    <ByteSlider :max="max" v-model="value" @input="inputSlider"/>
-    <ByteSlider :max="max" v-model="value" show-input />
+    <ByteSlider :max="max" v-model="value" @input="inputSlider" @change="showValue"/>
+    <p>{{ showvalue }}</p>
   </div>
 </template>
 
@@ -20,12 +20,18 @@ const value = ref<number>(0)
 const innerRef = ref<HTMLDivElement>()
 const scrollbarRef = ref<InstanceType<typeof ByteScrollbar>>()
 
+const showvalue = ref(0)
+
 onMounted(() => {
   max.value = innerRef.value!.clientHeight - 300
 })
 
 const inputSlider = (value: number) => {
   scrollbarRef.value!.setScrollTop(value)
+}
+
+const showValue = (newValue: number) => {
+  showvalue.value = newValue;
 }
 
 const scroll = ({ scrollTop }: {scrollTop:number}) => {

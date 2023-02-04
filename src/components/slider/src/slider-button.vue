@@ -52,7 +52,7 @@ const emit = defineEmits<{
   (e: 'update', value: MouseEvent) : void
 }>();
 
-const btnWrapStyle = inject('SliderKey') as StyleValue;
+const {btnWrapStyle,emitChange} = inject('SliderKey') as any;
 
 // 实现拖拽自定义指令
 const vDraggable = {
@@ -73,6 +73,8 @@ const vDraggable = {
       document.onmouseup = function () {
         el.style.cursor = "grab";
         document.onmousemove = document.onmouseup = null;
+        // 鼠标停按时触发
+        emitChange();
       };
     };
   },

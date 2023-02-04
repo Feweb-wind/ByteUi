@@ -1,10 +1,12 @@
-import { computed, CSSProperties, SetupContext, ShallowRef } from "vue";
+import { computed, CSSProperties, nextTick, SetupContext, ShallowRef } from "vue";
 import ByteMessage from "@/components/message/index";
 import type { SliderEmits, SliderProps } from "./slider";
 import { UPDATE_MODEL_EVENT, INPUT_EVENT, CHANGE_EVENT } from "@/constants";
 
 export const useSlide = (props: SliderProps, slider: ShallowRef<HTMLElement | undefined>, emit: SetupContext<SliderEmits>['emit']) => {
 
+  // 保存位置信息的内部变量，产生一个闭包，有内存泄漏的风险
+  let value:number = 0;
 
   // 蓝条样式
   const barStyle = computed(() => {
@@ -93,10 +95,19 @@ export const useSlide = (props: SliderProps, slider: ShallowRef<HTMLElement | un
     if (realPosition !== props.modelValue) {
       // 触发事件
       emit(UPDATE_MODEL_EVENT, realPosition);
+      // 拖动时实时触发外部绑定的input事件
       emit(INPUT_EVENT, realPosition);
-      emit(CHANGE_EVENT, realPosition);
     }
+
+    // 更新内部变量，以便change事件调用
+    value = realPosition
   };
+
+  // 拖拽结束时才触发emitChange事件
+  const emitChange = async () => {
+    await nextTick();
+    emit(CHANGE_EVENT, value);
+  }
 
   // 根据输入事件更新位置
   const updateValByInput = (newValue: number | undefined) => {
@@ -132,7 +143,8 @@ export const useSlide = (props: SliderProps, slider: ShallowRef<HTMLElement | un
     runwayStyle,
     btnWrapStyle,
     updatePosByMouseEvent,
-    updateValByInput
+    updateValByInput,
+    emitChange
   }
 }
 

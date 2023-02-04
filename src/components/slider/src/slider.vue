@@ -76,14 +76,14 @@ const runwayClass = computed(() => {
   ];
 });
 
-const { barStyle, runwayStyle, btnWrapStyle, updatePosByMouseEvent, updateValByInput } =
+const { barStyle, runwayStyle, btnWrapStyle, updatePosByMouseEvent, updateValByInput,emitChange } =
   useSlide(props, slider, emit);
 
 // 间断点
 const { stops, getStopStyle } = useStops(props);
 
 //
-provide("SliderKey", btnWrapStyle);
+provide("SliderKey", { btnWrapStyle, emitChange});
 </script>
 
 <style lang="less" scoped>
