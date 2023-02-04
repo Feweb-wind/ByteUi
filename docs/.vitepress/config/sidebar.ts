@@ -4,6 +4,7 @@ export default {
             text: 'Basic 基础组件',
             items: [
                 {text: 'Button 按钮', link: '/components/button'},
+                {text: 'Scrollbar 滚动条', link: '/components/scrollbar'}
             ]
         },
         {

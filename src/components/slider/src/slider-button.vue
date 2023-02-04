@@ -20,6 +20,10 @@ import { placements } from '@popperjs/core'
 import { inject, StyleValue } from 'vue';
 import ByteTooltip from '@/components/tooltip/index';
 
+defineOptions({
+  name: "ByteSliderButton",
+});
+
 const props = defineProps({
   modelValue: {
     type: Number,

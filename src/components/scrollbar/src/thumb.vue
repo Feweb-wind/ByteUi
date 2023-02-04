@@ -28,6 +28,9 @@ import {
   useEventListener,
 } from "./util";
 
+defineOptions({
+  name: "ByteScrollThumb",
+});
 
 const props = defineProps(thumbProps);
 

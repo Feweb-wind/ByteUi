@@ -1,18 +1,18 @@
 <template>
-  <div style="width: 600px;margin-bottom: 20px;">
+  <div>
     <ByteScrollbar ref="scrollbarRef"  height="300px" always @scroll="scroll">
       <div ref="innerRef">
-        <p v-for="item in 20">{{ item }}新年快乐，兔年大吉！</p>
+        <p v-for="item in 20" style="text-align: center;">{{ item }}新年快乐，兔年大吉！</p>
       </div>
     </ByteScrollbar>
-    <ByteSlider :max="max" v-model="value" @input="inputSlider"/>
-    <ByteSlider :max="max" v-model="value" show-input />
+    <div style="margin-top: 20px;">
+      <ByteSlider :max="max" v-model="value" @input="inputSlider"/>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import ByteSlider from "@/components/slider/index";
-import ByteScrollbar from "@/components/scrollbar/index";
+import {ByteScrollbar, ByteSlider} from "@byte-ui/components";
 import { onMounted, ref } from "vue";
 
 const max = ref(0)
@@ -21,7 +21,7 @@ const innerRef = ref<HTMLDivElement>()
 const scrollbarRef = ref<InstanceType<typeof ByteScrollbar>>()
 
 onMounted(() => {
-  max.value = innerRef.value!.clientHeight - 300
+  max.value = innerRef.value!.clientHeight - 300 + 32
 })
 
 const inputSlider = (value: number) => {
@@ -34,6 +34,4 @@ const scroll = ({ scrollTop }: {scrollTop:number}) => {
 
 </script>
 
-<style lang="less" scoped>
-</style>
 

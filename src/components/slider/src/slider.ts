@@ -1,10 +1,8 @@
 import { placements } from '@popperjs/core';
 import { isNumber } from '@vueuse/core';
 import { ExtractPropTypes } from 'vue';
+import { UPDATE_MODEL_EVENT, INPUT_EVENT, CHANGE_EVENT } from "@/constants";
 
-export const UPDATE_MODEL_EVENT = 'update:modelValue'
-export const INPUT_EVENT = 'input'
-export const CHANGE_EVENT = 'change'
 
 export const sliderProps = {
   modelValue: {
@@ -81,4 +79,5 @@ export const SliderEmits = {
   [CHANGE_EVENT]: isValidValue,
 };
 
+// 为use-slide的参数作类型标注
 export type SliderEmits = typeof SliderEmits;

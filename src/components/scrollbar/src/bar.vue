@@ -15,6 +15,10 @@ import { ref } from "vue";
 import { GAP } from "./util";
 import ByteThumb from "./thumb.vue";
 
+defineOptions({
+  name: "ByteScroollBar",
+});
+
 const props = defineProps({
   always: {
     type: Boolean,

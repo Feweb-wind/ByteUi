@@ -10,4 +10,6 @@ export * from "./select";
 export * from "./checkbox";
 export * from "./popover";
 export * from "./radio";
+export * from "./slider";
+export * from "./scrollbar";
 

@@ -1,11 +1,7 @@
 import { computed, CSSProperties, SetupContext, ShallowRef } from "vue";
 import ByteMessage from "@/components/message/index";
 import type { SliderEmits, SliderProps } from "./slider";
-import {
-  CHANGE_EVENT,
-  INPUT_EVENT,
-  UPDATE_MODEL_EVENT,
-} from './slider'
+import { UPDATE_MODEL_EVENT, INPUT_EVENT, CHANGE_EVENT } from "@/constants";
 
 export const useSlide = (props: SliderProps, slider: ShallowRef<HTMLElement | undefined>, emit: SetupContext<SliderEmits>['emit']) => {
 
@@ -103,8 +99,10 @@ export const useSlide = (props: SliderProps, slider: ShallowRef<HTMLElement | un
   };
 
   // 根据输入事件更新位置
-  const updateValByInput = (newValue: number) => {
-    emit(UPDATE_MODEL_EVENT, newValue);
+  const updateValByInput = (newValue: number | undefined) => {
+    if (newValue) {
+      emit(UPDATE_MODEL_EVENT, newValue);
+    }
   }
 
   // 根据人为设置的范围精修有效数位

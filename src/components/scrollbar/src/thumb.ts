@@ -36,6 +36,7 @@ export const thumbProps = {
   always: Boolean,
 };
 
+// 提取props中的类型
 export type ThumbProps = ExtractPropTypes<typeof thumbProps>
 
 

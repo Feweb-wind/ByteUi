@@ -30,12 +30,12 @@
     <!-- 携带输入框 -->
     <byte-input-number
       v-if="showInput"
+      :modelValue ="modelValue"
       :max="max"
       :min="min"
       :step="step"
-      :modelValue="modelValue"
       :size="size"
-      @update:model-value="updateValByInput"
+      @update:modelValue="updateValByInput"
     />
   </div>
 </template>

@@ -44,7 +44,7 @@ import {
 import Bar from "./bar.vue";
 
 defineOptions({
-  name:'ByteScrollbar'
+  name: "ByteScrollbar",
 });
 
 const props = defineProps({
@@ -140,7 +140,6 @@ const wrapRef = ref<HTMLDivElement>();
 const resizeRef = ref<HTMLElement>();
 const barRef = ref<BarInstance>();
 
-
 // 设置滑块的尺寸（长度）
 const sizeWidth = ref("0");
 const sizeHeight = ref("0");
@@ -156,6 +155,7 @@ const style = computed<StyleValue>(() => {
     if (isNumber(props.height)) {
       style.height = props.height + "px";
     } else {
+      // 需校验字符串
       style.height = props.height;
     }
   }
@@ -179,6 +179,7 @@ const wrapKls = computed(() => {
   ];
 });
 
+// 外部调用函数
 const handleScroll = () => {
   if (wrapRef.value) {
     barRef.value?.handleScroll(wrapRef.value);
