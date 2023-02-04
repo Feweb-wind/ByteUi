@@ -5,13 +5,18 @@
     class="slider_btn-wrapper"
     :style="btnWrapStyle"
   >
-    <byte-tooltip :placement="placement">
-      <template #content>
-        {{ modelValue }}
-      </template>
-      <!-- 标记点 -->
+    <template v-if="showTooltip">
+      <byte-tooltip :placement="placement">
+        <template #content>
+          {{ modelValue }}
+        </template>
+        <!-- 标记点 -->
+        <div class="slider_btn" />
+      </byte-tooltip>
+    </template>
+    <template v-else>
       <div class="slider_btn" />
-    </byte-tooltip>
+    </template>
   </div>
 </template>
 
