@@ -11,6 +11,7 @@ export default {
             text: 'Form 表单组件',
             items: [
                 {text: 'Select 选择器', link: '/components/select'},
+                {text: 'Slider 滑块', link: '/components/slider'}
             ]
         },
         {

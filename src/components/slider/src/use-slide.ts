@@ -44,7 +44,6 @@ export const useSlide = (props: SliderProps, slider: ShallowRef<HTMLElement | un
 
     if (props.vertical) {
       let clientY = (e as MouseEvent).clientY;
-      console.log(111);
 
       const sliderOffsetBottom = slider.value!.getBoundingClientRect().bottom;
       const sliderOffsetTop = slider.value!.getBoundingClientRect().top;
