@@ -31,6 +31,7 @@
     <byte-input-number
       v-if="showInput"
       :modelValue ="modelValue"
+      class="byte-slder__input"
       :max="max"
       :min="min"
       :step="step"
@@ -60,10 +61,10 @@ const sliderClass = computed(() => {
     "byte-slider",
     {
       "byte-slider-disable": props.disabled,
-    },
-    {
       "is-vertical": props.vertical,
-    },
+      "slider-large": props.size==="large",
+      "slider-small": props.size==="small",
+    }
   ];
 });
 
@@ -94,6 +95,14 @@ provide("SliderKey", { btnWrapStyle, emitChange});
   // padding: 5px 0;
   display: flex;
   align-items: center;
+
+  // 设置size 样式
+  &.slider-large {
+    height: 40px;
+  }
+  &.slider-small {
+    height: 24px;
+  }
 
   &.is-vertical {
     position: relative;
@@ -146,6 +155,12 @@ provide("SliderKey", { btnWrapStyle, emitChange});
       margin-right: 30px;
       width: auto;
     }
+  }
+
+  // 单独设置输入框样式
+  .byte-slder__input {
+    flex-shrink: 0;
+    width: 130px;
   }
 }
 

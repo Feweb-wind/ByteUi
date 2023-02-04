@@ -1,5 +1,5 @@
 <template>
-  <div class="byte-input" :class="size">
+  <div class="byte-input" :class="'input-'+ size">
     <!-- input区域 -->
     <template v-if="type !== 'textarea'">
       <div class="inner-input">
@@ -128,19 +128,22 @@ const showInput = ():void=>{
 </script>
 
 <style lang="less">
-//大小,medium / small / mini
-  .large[class="byte-input"]{
-    height: 36px;
-  }
-  .default[class="byte-input"]{
-    height: 32px;
-  }
-  .small[class="byte-input"]{
-    height: 28px;
-  }
+
 .byte-input{
   width: 180px;
   height: 40px;
+
+  //大小 large / default / small
+  &.input-large{
+    height: 40px;
+  }
+  &.input-default {
+    height: 32px;
+  }
+  &.input-small{
+    height: 24px;
+  }
+
   .inner-input{
     display: flex;
     position: relative;

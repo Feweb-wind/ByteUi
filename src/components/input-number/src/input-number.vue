@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import ByteInput from '../../byte-input.vue'
 import {ByteIcon} from '@byte-ui/components'
 import { Minus, Plus, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
@@ -124,6 +124,17 @@ function valueChange(newValue: number | string) {
   emits('change', value.value, oldValue)
   emits('update:modelValue', value.value)
 }
+
+// 示例中，并行的多个组件依赖同一个modelValue，inuptValue不及时更新
+watch(
+  () => props.modelValue,
+  (newvalue) => {
+    if(typeof newvalue === "number"){
+      inuptValue.value = newvalue;
+      value.value = newvalue;
+    }
+  }
+)
 </script>
 
 <style lang="less">
