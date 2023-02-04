@@ -46,6 +46,7 @@
       :max="props.max"
       :min="props.min"
       :label="props.label"
+      :showPassword="false"
       @change="valueChange(inuptValue)"
       @blur="(event: FocusEvent) => emits('blur', event)"
       @focus="(event: FocusEvent) => emits('focus', event)"

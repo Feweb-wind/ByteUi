@@ -78,7 +78,7 @@ const props = defineProps({
     type:String,
     validator(value:string) {
       // The value must match one of these strings
-      return ['medium', 'small', 'mini'].includes(value)
+      return ['large', 'default', 'small'].includes(value)
     }
   }
 })
@@ -102,7 +102,7 @@ const suffix = computed(
 //清空input区域，仅当clearable props为true时 dom才被渲染出来
 let myinput = ref<HTMLInputElement|null>(null) //input实例
 onMounted(()=>{
-  console.log(myinput.value)
+  // console.log(myinput.value)
 })
 const clearInput = ():void=>{
   if(myinput.value!==null){
@@ -129,13 +129,13 @@ const showInput = ():void=>{
 
 <style lang="less">
 //大小,medium / small / mini
-  .medium[class="byte-input medium"]{
-  height: 36px;
+  .large[class="byte-input"]{
+    height: 36px;
   }
-  .small[class="byte-input small"]{
+  .default[class="byte-input"]{
     height: 32px;
   }
-  .mini[class="byte-input mini"]{
+  .small[class="byte-input"]{
     height: 28px;
   }
 .byte-input{
