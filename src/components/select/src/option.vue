@@ -21,7 +21,7 @@ defineOptions({
 // getCurrentInstance()  =>  vue3的setup语法糖无法直接获取this，该方法用来获取组件实例vm
 //   =>   只能在setup或生命周期钩子中使用
 const vm = getCurrentInstance()!.proxy;
-const props = defineProps<{
+const props = defineProps({
   value: {
     required: true,
     type: [String, Number, Boolean, Object]
@@ -32,7 +32,7 @@ const props = defineProps<{
     type: Boolean,
     default: false,
   }
-}>();
+});
 
 const states = reactive({
   index: -1,
@@ -52,7 +52,7 @@ const disabledClass = computed(() => {
 
 function selectOptionClick() {
   if (props.disabled !== true && states.groupDisabled !== true) {
-    select.handleOptionSelect(vm, true);
+    select!.handleOptionSelect(vm, true);
   }
 }
 </script>
