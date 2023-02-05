@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref ,computed,onMounted} from 'vue'
+import { ref ,computed,onMounted, nextTick} from 'vue'
 //props
 const props = defineProps({
   //原生属性
@@ -124,6 +124,25 @@ const showInput = ():void=>{
   }
 }
 //显示字数限制
+
+
+
+
+// 获取焦点
+const focus = async () => {
+  await nextTick()
+  myinput.value?.focus()
+}
+// 失去焦点
+const blur = () => myinput.value?.blur()
+
+// 对外暴露
+defineExpose({
+  // 使 input 元素获得焦点
+  focus,
+  // 使 input 元素失去焦点
+  blur
+})
 
 </script>
 

@@ -37,6 +37,7 @@
     <!-- 输入框 -->
     <ByteInput
       v-model="inuptValue"
+      ref="input"
       type="number"
       :placeholder="props.placeholder"
       :name="props.name"
@@ -61,6 +62,9 @@ import {ByteIcon} from '@byte-ui/components'
 import { Minus, Plus, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import { inputNumberProps, inputNumberEmits } from './input-number'
 
+import type Input from '../../byte-input.vue'
+type InputInstance = InstanceType<typeof Input>
+
 // 属性定义以及默认值
 const props = defineProps(inputNumberProps)
 
@@ -71,6 +75,8 @@ const emits = defineEmits(inputNumberEmits)
 let value = ref<number>(props.modelValue!)
 // 输入值
 let inuptValue = ref<number | string>(value.value)
+// 获取实例
+const input = ref<InputInstance>()
 
 // 减
 function decrease() {
@@ -121,11 +127,22 @@ function valueChange(newValue: number | string) {
     valueChange(value.value - (value.value % props.step))
   }
   inuptValue.value = value.value
-  emits('change', value.value, oldValue)
-  emits('update:modelValue', value.value)
+
+  if (value.value !== oldValue) {
+    emits('change', value.value, oldValue)
+    emits('update:modelValue', value.value)
+  }
 }
 
-// 示例中，并行的多个组件依赖同一个modelValue，inuptValue不及时更新
+// 调用获取和失去焦点的方法
+const focus = () => {
+  input.value?.focus?.()
+}
+const blur = () => {
+  input.value?.blur?.()
+}
+
+// 父组件修改modelValue，inuptValue和value不及时更新
 watch(
   () => props.modelValue,
   (newvalue) => {
@@ -135,6 +152,22 @@ watch(
     }
   }
 )
+
+// 子组件输入事件inuptValue实时更新，并传递到父组件
+watch(
+  inuptValue,
+  (newValue) => {
+    valueChange(newValue);
+  }
+)
+
+// 对外暴露方法
+defineExpose({
+  // 使 ByteInput 组件获得焦点
+  focus,
+  // 使 ByteInput 组件失去焦点
+  blur
+})
 </script>
 
 <style lang="less">
