@@ -92,7 +92,7 @@ const props = defineProps({
     type: String,
     validator(value: string) {
       // The value must match one of these strings
-      return ['medium', 'small', 'mini'].includes(value)
+      return ['large', 'default', 'small'].includes(value)
     },
   },
 })
@@ -157,19 +157,19 @@ defineExpose({
 </script>
 
 <style lang="less">
-//大小,medium / small / mini
-.medium[class='byte-input medium'] {
-  height: 36px;
-}
-.small[class='byte-input small'] {
-  height: 32px;
-}
-.mini[class='byte-input mini'] {
-  height: 28px;
-}
 .byte-input {
   width: 180px;
   height: 40px;
+  //大小 large / default / small
+  &.input-large {
+    height: 40px;
+  }
+  &.input-default {
+    height: 32px;
+  }
+  &.input-small {
+    height: 24px;
+  }
   .inner-input {
     display: flex;
     position: relative;
