@@ -57,8 +57,7 @@
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-import ByteInput from '../../byte-input.vue'
-import {ByteIcon} from '@byte-ui/components'
+import { ByteIcon, ByteInput } from '@byte-ui/components'
 import { Minus, Plus, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import { inputNumberProps, inputNumberEmits } from './input-number'
 
@@ -120,11 +119,15 @@ function valueChange(newValue: number | string) {
   // 如果超出范围处理
   if (props.max && value.value > props.max) {
     value.value = props.max
-  } else if (props.min!==Number.NEGATIVE_INFINITY && value.value < props.min) {
+  } else if (
+    props.min !== Number.NEGATIVE_INFINITY &&
+    value.value < props.min
+  ) {
     value.value = props.min
   } else if (props.stepStrictly && value.value % props.step !== 0) {
     // 如果设置了 step 的倍数
     valueChange(value.value - (value.value % props.step))
+    return
   }
   inuptValue.value = value.value
 
@@ -145,28 +148,25 @@ const blur = () => {
 // 父组件修改modelValue，inuptValue和value不及时更新
 watch(
   () => props.modelValue,
-  (newvalue) => {
-    if(typeof newvalue === "number"){
-      inuptValue.value = newvalue;
-      value.value = newvalue;
+  newvalue => {
+    if (typeof newvalue === 'number') {
+      inuptValue.value = newvalue
+      value.value = newvalue
     }
   }
 )
 
 // 子组件输入事件inuptValue实时更新，并传递到父组件
-watch(
-  inuptValue,
-  (newValue) => {
-    valueChange(newValue);
-  }
-)
+watch(inuptValue, newValue => {
+  valueChange(newValue)
+})
 
 // 对外暴露方法
 defineExpose({
   // 使 ByteInput 组件获得焦点
   focus,
   // 使 ByteInput 组件失去焦点
-  blur
+  blur,
 })
 </script>
 
