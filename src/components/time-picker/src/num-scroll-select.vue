@@ -128,7 +128,10 @@ const findClosest = (arr: number[], num: number) => {
   }
   &.is-disabled {
     color: #a8abb2;
-    cursor: not-allowed;
+    cursor: not-allowed !important;
+  }
+  &:hover {
+    background: #f5f7fa;
   }
 }
 </style>
