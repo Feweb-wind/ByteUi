@@ -1,7 +1,7 @@
 <template>
   <div ref="scrollbarRef" class="byte-scrollbar">
     <div ref="wrapRef" :class="wrapKls" :style="style" @scroll="handleScroll">
-      <component :is="tag" ref="resizeRef" :style="viewStyle">
+      <component :is="tag" ref="resizeRef" :style="viewStyle" :class="viewClass">
         <slot />
       </component>
     </div>
