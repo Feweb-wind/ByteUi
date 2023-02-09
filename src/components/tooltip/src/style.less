@@ -6,7 +6,7 @@
   font-size: 13px;
   border-radius: 4px;
   display: inline-block;
-  visibility: hidden;
+  visibility: v-bind(tooltipVisible);
   z-index: 2000;
 
   &.is-dark {
@@ -26,6 +26,7 @@
 
   .byte-tooltip-arrow,
   .byte-tooltip-arrow::before {
+    z-index: -1;
     position: absolute;
     width: 8px;
     height: 8px;
@@ -37,7 +38,7 @@
   }
 
   .byte-tooltip-arrow::before {
-    visibility: visible;
+    visibility: v-bind(tooltipVisible);
     content: '';
     transform: rotate(45deg);
   }

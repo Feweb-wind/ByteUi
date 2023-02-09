@@ -24,9 +24,12 @@ export function useOption(props, states) {
     })
 
     const itemSelected = computed(() => {
+        // 单选
         if (!select.props.multiple) {
             return isEqual(props.value, select.props.modelValue)
-        } else {
+        }
+        // 多选
+        else {
             return contains(select.props.modelValue as unknown[], props.value)
         }
     })
@@ -54,12 +57,13 @@ export function useOption(props, states) {
 
     const isDisabled = computed(() => {
         // return props.disabled || states.groupDisabled || limitReached.value
-        return props.disabled || states.groupDisabled
+        return props.disabled || states.groupDisabled || limitReached.value
     })
 
     const instance = getCurrentInstance()
 
     const contains = (arr = [], target) => {
+        // props.value是基本数据类型
         if (!isObject.value) {
             return arr && arr.includes(target)
         } else {
@@ -83,6 +87,8 @@ export function useOption(props, states) {
     }
 
     const hoverItem = () => {
+        // 未被禁用的前提下  更新hoverIndex
+        // hoverIndex、optionsArray 在 select 层面
         if (!props.disabled && !selectGroup.disabled) {
             select.hoverIndex = select.optionsArray.indexOf(instance.proxy)
         }

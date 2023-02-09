@@ -9,6 +9,13 @@ const iconPropType = definePropType<string | Component>([
     Function,
 ]);
 export const selectProps = buildProps({
+    // 选中项绑定值 modelValue / vModel
+    modelValue: {
+        type: [Array, String, Number, Boolean, Object]
+    },
+    vModel: {
+        type: [Array, String, Number, Boolean, Object]
+    },
     // 是否多选
     multiple: Boolean,
     // 是否禁用
@@ -41,7 +48,7 @@ export const selectProps = buildProps({
         value: ['dark', 'light'],
         default: 'light'
     },
-    autoComplete: {
+    autocomplete: {
         type: String,
         default: 'off'
     },

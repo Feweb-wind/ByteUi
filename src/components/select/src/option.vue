@@ -3,36 +3,38 @@
   @mouseenter="hoverItem"
   @click.stop="selectOptionClick"
   class="byte-select-dropdown-item"
-  :class="{'is-disabled': isDisabled}"
+  :class="{'is-disabled': isDisabled, 'selected': itemSelected}"
 >
   <slot>
-    <span>{{value}}</span>
+    <span>{{currentLabel}}</span>
   </slot>
 </li>
 </template>
 
 <script setup lang="ts">
-import {computed, reactive, getCurrentInstance} from "vue";
+import {computed, reactive, getCurrentInstance, onBeforeUnmount, nextTick} from "vue";
 import {useOption} from "./useOption";
+import {SelectOptionProxy} from "@/components/select/src/token";
 
 defineOptions({
   name: 'ByteOption'
 });
-// getCurrentInstance()  =>  vue3的setup语法糖无法直接获取this，该方法用来获取组件实例vm
-//   =>   只能在setup或生命周期钩子中使用
-const vm = getCurrentInstance()!.proxy;
-const props = defineProps<{
+
+const props = defineProps({
   value: {
     required: true,
     type: [String, Number, Boolean, Object]
   },
   label: [String, Number],
-  created: Boolean,
+  created: {
+    type: Boolean,
+    default: false
+  },
   disabled: {
     type: Boolean,
-    default: false,
+    default: false
   }
-}>();
+});
 
 const states = reactive({
   index: -1,
@@ -42,19 +44,42 @@ const states = reactive({
   hover: false,
 });
 
-const { currentLabel, itemSelected, isDisabled, select, hoverItem } = useOption(props, states)
+// currentLabel  =>  当前选项的展示值
+// itemSelected  =>  boolean  =>  是否被选中
+// isDisabled    =>  boolean  =>  是否被禁用
+// select        =>  select选择器
+// hoverItem     =>  更新select的hoverIndex值
+const { currentLabel, itemSelected, isDisabled, select, hoverItem } = useOption(props, states);
 
-const disabledClass = computed(() => {
-  if (props.disabled) {
-    return "is-disabled"
-  }
-});
+// getCurrentInstance()  =>  vue3的setup语法糖无法直接获取this，该方法用来获取组件实例vm
+//   =>   只能在setup或生命周期钩子中使用
+const vm = getCurrentInstance()!.proxy;
+
+select?.onOptionCreate(vm as unknown as SelectOptionProxy);
+
+onBeforeUnmount(() => {
+  const key = (vm as unknown as SelectOptionProxy).value;
+  const { selected } = select!;
+  const selectedOptions = select?.props.multiple ? selected : [selected];
+  // 用于判断当前option是否被选中
+  const doesSelected = selectedOptions.some((item: SelectOptionProxy) => {
+    return item.value === (vm as unknown as SelectOptionProxy).value
+  });
+  // if option is not selected, remove it from cache
+  nextTick(() => {
+    if (select?.cachedOptions.get(key) === vm && !doesSelected) {
+      select.cachedOptions.delete(key)
+    }
+  });
+  select?.onOptionDestroy(key, vm);
+})
 
 function selectOptionClick() {
-  if (props.disabled !== true && states.groupDisabled !== true) {
-    select.handleOptionSelect(vm, true);
+  if (!props.disabled && states.groupDisabled !== true) {
+    select!.handleOptionSelect(vm, true)
   }
 }
+
 </script>
 
 <style lang="less" scoped>
@@ -73,16 +98,19 @@ function selectOptionClick() {
   box-sizing: border-box;
   cursor: pointer;
 
+  // 被选中的样式
   &.selected {
     color: #409eff;
     font-weight: 700;
   }
 
+  // 禁用选项的样式
   &.is-disabled {
     color: #a8abb2;
     cursor: not-allowed;
   }
 
+  // 鼠标经过效果
   &:hover {
     background-color: #f5f7fa;
   }
