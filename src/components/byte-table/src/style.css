@@ -2,6 +2,9 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
+.hh_test {
+  background-color: red;
+}
 .byte-table {
   font-size: 14px;
   color: #606266;
@@ -22,6 +25,9 @@ table {
 }
 .byte-table .stripe {
   background-color: #fafafa;
+}
+.byte-table .hh {
+  background-color: red;
 }
 .byte-table .border table,
 .byte-table .border td,

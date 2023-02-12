@@ -12,7 +12,7 @@ const useRender = function (props: TableBodyProps) {
             let valueKey: keyof typeof nodeData = item as keyof typeof nodeData
             trChild.push(h('td', { class: 'byte-table-cell byte-table-col' }, nodeData[valueKey].toString()))
         })
-        return h('tr', { class: ['byte-table-row'].concat(getRowClass(rowIndex)) }, trChild)
+        return h('tr', { class: ['byte-table-row'].concat(getRowClass(nodeData, rowIndex)) }, trChild)
     }
     return {
         rowRender,

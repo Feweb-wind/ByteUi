@@ -10,5 +10,6 @@ export const tableProps = {
     border: {
         type: Boolean,
         default: false
-    }
+    },
+    rowClassName: [String, Function]
 }
