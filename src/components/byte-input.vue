@@ -84,13 +84,13 @@ const props = defineProps({
 })
 //emits
 const emit = defineEmits<{
-  (e:'update:modelValue',newvalue:[string,Number]):[string,Number] //双向绑定事件
+  (e:'update:modelValue',newvalue:string | number):string | number //双向绑定事件
 }>()
 //实现双向绑定
 const updateModelValue = (e:Event)=>{
   let target:EventTarget|null = e.target 
   if(target!==null){
-    emit('update:modelValue',target.value)
+    emit('update:modelValue',(target as HTMLInputElement).value)
   }
 }
 //判断后置图标是否显示
