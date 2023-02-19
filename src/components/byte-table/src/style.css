@@ -5,6 +5,24 @@ table {
 .hh_test {
   background-color: red;
 }
+.height_test {
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  overflow: auto;
+  scrollbar-width: none;
+  scrollbar-color: #dddee0;
+}
+.height_test thead {
+  height: auto;
+}
+.height_test thead tr {
+  display: inline-block;
+  width: 100%;
+}
+.height_test tbody {
+  flex: 1;
+}
 .byte-table {
   font-size: 14px;
   color: #606266;

@@ -52,7 +52,7 @@ export function TableStore<T>() {
             throw new Error(`Action not found ${name.toString()}`)
         }
     }
-    const getStates = function () {
+    const getStates = function (): StoreStates<T> {
         return states
     }
     return {

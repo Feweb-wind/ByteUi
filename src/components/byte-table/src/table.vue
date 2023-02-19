@@ -3,14 +3,16 @@
         <div class="hidden-columns">
             <slot></slot>
         </div>
-        <!-- <div class="header-wrapper">
+        <div class="header-wrapper" v-if="showHeader && tableLayout === 'fixed' ">
             <table>
+                <hColgroup :columns="store.getStates().columns" :table-layout="tableLayout"></hColgroup>
                 <table-header></table-header>
             </table>
-        </div> -->
-        <div :class="['body-wrapper',border?'border':'']">
-            <table>
-                <table-header></table-header>
+        </div>
+        <div :class="['body-wrapper fix-head',border?'border':'']">
+            <table class="test">
+                <hColgroup :columns="store.getStates().columns" :table-layout="tableLayout"></hColgroup>
+                <table-header v-if="showHeader && tableLayout === 'auto'"></table-header>
                 <table-body :stripe="stripe"></table-body>
             </table>
         </div>
@@ -22,6 +24,7 @@ import { TableInstance } from './store';
 import { tableProps } from './table/default';
 import tableHeader from './table-header';
 import TableBody from './table-body'
+import { hColgroup } from './hColgroup';
 import {TableStore} from './store'
 import './style.less'
 //props
@@ -33,5 +36,17 @@ store.commit('setData',props.data)
 
 </script>
 <style lang="less" scoped>
+
+// .fix-head{
+//     height: 206px;
+//     position: relative;
+//     width: 800px;
+//     overflow: auto;
+//     .test{
+//         table-layout: fixed;
+//         width: 100%;
+       
+//     }
+// }
 
 </style>
