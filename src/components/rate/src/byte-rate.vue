@@ -24,8 +24,11 @@
 <script setup lang="ts">
 import byteIcon from '@/components/byte-icon/src/byte-icon.vue'
 import { Message, Star, StarFilled } from '@element-plus/icons-vue';
-import {computed, ref, StyleValue} from 'vue'
+import {computed, watch,ref, StyleValue} from 'vue'
 import {rateProps,rateEmits} from './rate'
+defineOptions({
+  name: 'ByteRate',
+})
 const props = defineProps(rateProps)
 const emits = defineEmits(rateEmits)
 //更新双向绑定的值
@@ -34,6 +37,10 @@ const updateModelValue = (val:number) => {
     currentValue.value = val
     emits('update:modelValue', val)
 }
+//监听props双向绑定的值，同步到currentValue中
+watch(()=>props.modelValue,(newVal,oldVal)=>{
+    currentValue.value = newVal
+})
 //悬浮当前悬浮的是第几科星星
 const hoverIndex = ref(-1)
 //当前是第几科星星

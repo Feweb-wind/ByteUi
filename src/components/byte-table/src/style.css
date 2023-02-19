@@ -1,0 +1,54 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.hh_test {
+  background-color: red;
+}
+.height_test {
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  overflow: auto;
+  scrollbar-width: none;
+  scrollbar-color: #dddee0;
+}
+.height_test thead {
+  height: auto;
+}
+.height_test thead tr {
+  display: inline-block;
+  width: 100%;
+}
+.height_test tbody {
+  flex: 1;
+}
+.byte-table {
+  font-size: 14px;
+  color: #606266;
+}
+.byte-table .byte-table-cell {
+  padding: 8px 0;
+  border-bottom: 0.7px solid #ebeef5;
+}
+.byte-table .byte-table-row {
+  transition: all 0.25s ease;
+  background-color: #ffffff;
+}
+.byte-table .byte-table-row:hover {
+  background-color: #f5f7fa;
+}
+.byte-table .byte-table-col {
+  text-align: center;
+}
+.byte-table .stripe {
+  background-color: #fafafa;
+}
+.byte-table .hh {
+  background-color: red;
+}
+.byte-table .border table,
+.byte-table .border td,
+.byte-table .border th {
+  border: 0.7px solid #ebeef5;
+}
