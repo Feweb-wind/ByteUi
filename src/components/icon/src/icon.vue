@@ -43,5 +43,10 @@ function addUnit(size: number | string): string {
   fill: currentColor;
   color: var(--color);
   font-size: inherit;
+
+  svg {
+    height: 1em;
+    width: 1em;
+  }
 }
 </style>

@@ -23,15 +23,15 @@
       :disabled="item.disabled"
     />
     <template #prefix>
-      <el-icon v-if="props.prefixIcon">
+      <byte-icon v-if="props.prefixIcon">
         <component :is="props.prefixIcon" />
-      </el-icon>
+      </byte-icon>
     </template>
   </byte-select>
 </template>
 
 <script lang="ts" setup>
-import { ByteSelect, ByteOption } from '@byte-ui/components'
+import { ByteSelect, ByteOption ,ByteIcon } from '@byte-ui/components'
 import { computed, ref } from 'vue'
 import dayjs from 'dayjs'
 import { timeSelectProps } from './time-select'

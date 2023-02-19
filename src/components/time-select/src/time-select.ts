@@ -1,4 +1,4 @@
-import { Component, PropType } from 'vue'
+import type { Component, PropType } from 'vue'
 import { Clock, CircleClose } from '@element-plus/icons-vue'
 
 export const timeSelectProps = {

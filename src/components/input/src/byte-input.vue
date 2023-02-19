@@ -24,13 +24,18 @@
           @input="updateModelValue"
           @focus="event => emit('focus', event)"
           @blur="event => emit('blur', event)"
+          @change="event => emit('change', event)"
         />
         <!-- suffix-icon -->
         <span v-if="suffix" class="suffix-icon">
           <template v-if="clearable">
-            <span @click="clearInput">x</span>
+            <span @click="clearInput">
+              <byte-icon class="clear-icon">
+                <component :is="suffixIcon" />
+              </byte-icon>
+            </span>
           </template>
-          <template v-if="showPassword">
+          <template v-if="type === 'password' && showPassword">
             <span @click="showInput">e</span>
           </template>
           <template v-if="showWordLimit && maxlength">
@@ -101,6 +106,7 @@ const emit = defineEmits<{
   (e: 'update:modelValue', newvalue: string | number): string | number //双向绑定事件
   (e: 'blur', event: FocusEvent): void
   (e: 'focus', event: FocusEvent): void
+  (e: 'change', event: Event): void
 }>()
 //实现双向绑定
 const updateModelValue = (e: Event) => {
@@ -121,7 +127,7 @@ const suffix = computed(() => {
 //清空input区域，仅当clearable props为true时 dom才被渲染出来
 let myinput = ref<HTMLInputElement | null>(null) //input实例
 onMounted(() => {
-  console.log(myinput.value)
+  // console.log(myinput.value)
 })
 const clearInput = (): void => {
   if (myinput.value !== null) {
