@@ -1,43 +1,16 @@
 <template>
   <div style="width: 600px;margin-bottom: 20px;">
-    <ByteScrollbar ref="scrollbarRef"  height="300px" always @scroll="scroll">
-      <div ref="innerRef">
-        <p v-for="item in 20">{{ item }}新年快乐，兔年大吉！</p>
-      </div>
-    </ByteScrollbar>
-    <ByteSlider :max="max" v-model="value" @input="inputSlider" @change="showValue"/>
-    <p>{{ showvalue }}</p>
+    <byte-switch></byte-switch>
+    <byte-switch v-model="value2"
+         active-color="#13ce66"
+         inactive-color="#ff4949"></byte-switch>
   </div>
 </template>
 
 <script lang="ts" setup>
-import ByteSlider from "@/components/slider/index";
-import ByteScrollbar from "@/components/scrollbar/index";
-import { onMounted, ref } from "vue";
-
-const max = ref(0)
-const value = ref<number>(0)
-const innerRef = ref<HTMLDivElement>()
-const scrollbarRef = ref<InstanceType<typeof ByteScrollbar>>()
-
-const showvalue = ref(0)
-
-onMounted(() => {
-  max.value = innerRef.value!.clientHeight - 300
-})
-
-const inputSlider = (value: number) => {
-  scrollbarRef.value!.setScrollTop(value)
-}
-
-const showValue = (newValue: number) => {
-  showvalue.value = newValue;
-}
-
-const scroll = ({ scrollTop }: {scrollTop:number}) => {
-  value.value = scrollTop
-}
-
+import {ref} from 'vue'
+import byteSwitch from '@byte-ui/components/byte-switch';
+const value2 = ref(true)
 </script>
 
 <style lang="less" scoped>

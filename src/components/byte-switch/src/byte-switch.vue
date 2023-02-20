@@ -20,7 +20,9 @@
 <script setup lang="ts">
 import {computed,watch, ref, StyleValue} from 'vue'
 import { switchProps,switchEmits } from './switch';
-
+defineOptions({
+  name: 'ByteSwitch',
+})
 const props = defineProps(switchProps)
 const emits = defineEmits(switchEmits)
 
@@ -38,9 +40,11 @@ watch(()=>props.modelValue,(newVal,oldVal)=>{
 //当前的颜色
 const switchCoreColor = computed<StyleValue>(()=>{
     let color:StyleValue = props.activeColor
+
     if(!switchValue.value){
         color = props.inactiveColor
     }
+    console.log(color)
     return `border-color: ${color}; background-color: ${color};`
 })
 //开关旋钮的位置
