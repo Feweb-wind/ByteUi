@@ -1,6 +1,5 @@
-import { withInstallFunction } from "@/utils";
+import { withInstall } from "@/utils";
 import Message from "./src/method";
 
-const ByteMessage = withInstallFunction(Message, "$message");
-
+export const ByteMessage = withInstall(Message);
 export default ByteMessage;

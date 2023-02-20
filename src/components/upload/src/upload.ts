@@ -3,6 +3,7 @@ import { NOOP } from '@vue/shared'
 import { AxiosProgressEvent } from 'axios'
 import { PropType, ExtractPropTypes } from 'vue'
 import { UploadHttpError, axiosUpload } from './http'
+import type Upload from './upload.vue'
 
 export const uploadListTypes = ['text', 'picture', 'picture-card'] as const
 
@@ -178,3 +179,5 @@ export const uploadProps = {
 }
 
 export type UploadProps = ExtractPropTypes<typeof uploadProps>
+
+export type UploadInstance = InstanceType<typeof Upload>

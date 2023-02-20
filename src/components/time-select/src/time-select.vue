@@ -10,7 +10,7 @@
     :placeholder="props.placeholder"
     default-first-option
     :filterable="props.editable"
-    @update:model-value="(event:Event)=>emits('update:model-value',event)"
+    @update:model-value="(event:Event)=>emits('update:modelValue',event)"
     @change="(event:Event) => emits('change', event)"
     @blur="(event:FocusEvent) => emits('blur', event)"
     @focus="(event:FocusEvent) => emits('focus', event)"
@@ -31,14 +31,20 @@
 </template>
 
 <script lang="ts" setup>
-import { ByteSelect, ByteOption ,ByteIcon } from '@byte-ui/components'
+import { ByteSelect, ByteOption, ByteIcon } from '@byte-ui/components'
 import { computed, ref } from 'vue'
 import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
 import { timeSelectProps } from './time-select'
 import { compareTime, formatTime, nextTime, parseTime } from './util'
+dayjs.extend(customParseFormat)
+
+defineOptions({
+  name: 'ByteTimeSelect',
+})
 
 const props = defineProps(timeSelectProps)
-const emits = defineEmits(['focus', 'change', 'blur', 'update:model-value'])
+const emits = defineEmits(['focus', 'change', 'blur', 'update:modelValue'])
 
 const select = ref<typeof ByteSelect>()
 const value = computed(() => props.modelValue)
@@ -68,6 +74,8 @@ const items = computed(() => {
     let current = start.value
     let currentTime: string
     while (current && end.value && compareTime(current, end.value) <= 0) {
+      console.log(dayjs(current, 'HH:mm'))
+
       currentTime = dayjs(current, 'HH:mm').format(props.format)
       result.push({
         value: currentTime,

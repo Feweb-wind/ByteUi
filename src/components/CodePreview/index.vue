@@ -16,7 +16,7 @@
        v-if="sourceCodeVisible"
   >
     <div class="example-source">
-      <highlightjs :autodetect="false" :code="sourceCode"/>
+      <highlightjs language="javascript" :code="sourceCode"/>
     </div>
   </div>
 
@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-import {defineProps, onMounted, ref} from "vue";
+import {onMounted, ref} from "vue";
 
 const props = defineProps({
   compName: String,

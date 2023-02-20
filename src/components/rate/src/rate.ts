@@ -68,7 +68,7 @@ export const rateProps = {
         default: '#1F2D3D'
     },
     texts: {
-        type: Array<String>,
+        type: Array<String>, 
         default: () => ['极差', '失望', '一般', '满意', '惊喜']
     },
     scoreTemplate: {

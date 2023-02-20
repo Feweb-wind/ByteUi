@@ -47,11 +47,15 @@
 
 <script lang="ts" setup>
 import UploadContent from './upload-content.vue'
-import uploadList from './upload-list.vue'
+import UploadList from './upload-list.vue'
 import { uploadProps } from './upload'
 import { computed, shallowRef } from 'vue'
 import { UploadContentProps, UploadContentInstance } from './upload-content'
 import { useHandlers } from './use-handlers'
+
+defineOptions({
+  name:'ByteUpload'
+})
 
 const props = defineProps(uploadProps)
 

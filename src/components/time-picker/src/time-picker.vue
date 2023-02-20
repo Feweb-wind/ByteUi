@@ -1,5 +1,10 @@
 <template>
-  <byte-popover trigger="focus" style="bottom: 6px" :teleported="teleported" :class="popperClass">
+  <byte-popover
+    trigger="focus"
+    style="bottom: 6px"
+    :teleported="teleported"
+    :class="popperClass"
+  >
     <template #reference>
       <range-input
         v-if="isRange"
@@ -54,6 +59,10 @@ import { timePickerProps } from './time-picker'
 import type { ModelValueType } from './time-picker'
 import dayjs from 'dayjs'
 
+defineOptions({
+  name: 'ByteTimePicker',
+})
+
 const props = defineProps(timePickerProps)
 const emits = defineEmits(['update:modelValue'])
 const timePickerInput = ref<typeof ByteInput>()
@@ -69,7 +78,7 @@ const date = computed({
       mode.value = props.isRange ? 'range&date' : 'date'
       return props.isRange
         ? ([new Date(), new Date()] as [Date, Date])
-        : undefined
+        : new Date()
     } else if (props.modelValue instanceof Date) {
       mode.value = 'date'
       return props.modelValue

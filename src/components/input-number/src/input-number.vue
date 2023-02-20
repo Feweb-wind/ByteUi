@@ -62,6 +62,10 @@ import { Minus, Plus, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import { inputNumberProps, inputNumberEmits } from './input-number'
 
 import type Input from '../../byte-input.vue'
+defineOptions({
+  name:'ByteInputNumber'
+})
+
 type InputInstance = InstanceType<typeof Input>
 
 // 属性定义以及默认值

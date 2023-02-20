@@ -18,3 +18,4 @@ export * from './time-picker'
 export * from "./rate"
 export * from "./byte-switch"
 export * from "./input"
+export * from './message'
