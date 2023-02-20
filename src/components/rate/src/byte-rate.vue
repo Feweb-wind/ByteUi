@@ -1,6 +1,5 @@
 <template>
     <div class="byte-rate" :style="controlDisabled">
-        {{ modelValue }}
         <span v-for="item in max" :key="item" :val="item" class="byte-rate-item"
         @click.stop="updateModelValue(item)" 
         @mousemove="setCurrentValue(item)"

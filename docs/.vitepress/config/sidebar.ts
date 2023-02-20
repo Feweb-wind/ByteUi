@@ -14,6 +14,7 @@ export default {
                 { text: 'Slider 滑块', link: '/components/slider' },
                 { text: 'Button 按钮', link: '/components/button' },
                 { text: 'Border 边框', link: '/components/border' },
+                { text: 'Rate 评分', link: '/components/rates' }
             ]
         },
         {

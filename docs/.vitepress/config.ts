@@ -19,9 +19,12 @@ export default defineConfig({
     },
     themeConfig: {
         siteTitle: "ByteUI",
-        logo: '/images/element-plus-logo.svg',
         nav,
-        sidebar
+        sidebar,
+        footer: {
+            message: 'Released under the MIT License.',
+            copyright: 'Copyright © 2023-present Evan You'
+        }
     },
 
 });

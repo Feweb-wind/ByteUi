@@ -6,22 +6,44 @@ layout: doc
 
 <script setup>
 import BasicComp1 from "../examples/rate/01.vue";
+import BasicComp2 from "../examples/rate/01-2.vue";
+import TextComp from "../examples/rate/02.vue"
+import IconComp from "../examples/rate/03.vue"
+import ReadComp from "../examples/rate/04.vue"
 </script>
 
 # Rate 评分
 评分组件
 ## 基础用法
-
+默认不区分颜色。使用`v-model`来动态绑定评分所绑定的值
 <CodePreview comp-name="rate" demo-name="01" demo-type="docs">
     <BasicComp1/>
 </CodePreview>
 
+区分颜色。使用`color`来绑定颜色
+<CodePreview comp-name="rate" demo-name="01-2" demo-type="docs">
+    <BasicComp2/>
+</CodePreview>
+
 ## 辅助文字
-用辅助文字直接地表达对应分数
+用辅助文字直接地表达对应分数。
+为组件设置 `show-text` 属性会在右侧显示辅助文字。通过设置 `texts` 可以为每一个分值指定对应的辅助文字。`texts` 为一个数组，长度应等于最大值 `max`。
+<CodePreview comp-name="rate" demo-name="02" demo-type="docs">
+    <TextComp/>
+</CodePreview>
+
 ## 其它 icon
 当有多层评价时，可以用不同类型的 icon 区分评分层级
+<CodePreview comp-name="rate" demo-name="03" demo-type="docs">
+    <IconComp/>
+</CodePreview>
+
 ## 只读
-只读的评分用来展示分数，允许出现半星
+只读的评分用来展示分数
+<CodePreview comp-name="rate" demo-name="04" demo-type="docs">
+    <ReadComp/>
+</CodePreview>
+
 ## Attributes
 |  参数    |   说明   |  	类型    |    可选值  |    默认值  |
 | ---- | ---- | ---- | ---- | ---- |

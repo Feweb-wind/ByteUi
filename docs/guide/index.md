@@ -1,5 +1,5 @@
 ---
-title: Docs with VitePress
+title: Docs with ByteUi
 editLink: true
 ---
 
