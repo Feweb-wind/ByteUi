@@ -28,15 +28,18 @@
         />
         <!-- suffix-icon -->
         <span v-if="suffix" class="suffix-icon">
-          <template v-if="clearable">
+          <template v-if="clearable && modelValue.toString().length>0">
             <span @click="clearInput">
               <byte-icon class="clear-icon">
-                <component :is="suffixIcon" />
+                <component :is="CircleClose" />
               </byte-icon>
             </span>
           </template>
-          <template v-if="type === 'password' && showPassword">
-            <span @click="showInput">e</span>
+          <template v-if="type === 'password' && showPassword && modelValue.toString().length>0">
+            <!-- <span @click="showInput">e</span> -->
+            <byte-icon  @click="showInput">
+              <component :is="passwordIcon"></component>
+            </byte-icon>
           </template>
           <template v-if="showWordLimit && maxlength">
             <span>{{ modelValue.toString().length }} / {{ maxlength }}</span>
@@ -48,9 +51,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted,watch } from 'vue'
 import type { PropType, Component } from 'vue'
 import { ByteIcon } from '@byte-ui/components'
+import { CircleClose , View,Hide} from '@element-plus/icons-vue';
+defineOptions({
+  name: 'ByteInput',
+})
 //props
 const props = defineProps({
   //原生属性
@@ -77,7 +84,7 @@ const props = defineProps({
   },
   placeholder: String, //提示信息
   prefixIcon: [String, Object] as PropType<string | Component>, //前置图标
-  suffixIcon: [String, Object] as PropType<string | Component>, //前置图标
+  suffixIcon: [String, Object] as PropType<string | Component>, //后置
   showWordLimit: {
     //限制长度
     type: Boolean,
@@ -90,7 +97,7 @@ const props = defineProps({
   showPassword: {
     //是否切换密码图标
     type: Boolean,
-    default: true,
+    default: false,
   },
   size: {
     //大小,medium / small / mini
@@ -101,6 +108,7 @@ const props = defineProps({
     },
   },
 })
+console.log(props.showPassword)
 //emits
 const emit = defineEmits<{
   (e: 'update:modelValue', newvalue: string | number): string | number //双向绑定事件
@@ -138,16 +146,22 @@ const test = (): void => {
   console.log('test')
 }
 //显示密码
+let nowType = ref('password') 
 const showInput = (): void => {
+  console.log(nowType.value)
   if (myinput.value !== null) {
-    let nowType: string = myinput.value.type
-    if (nowType === 'password') {
+    if (nowType.value === 'password') {
       myinput.value.type = 'text'
-    } else if (nowType === 'text') {
+    } else if (nowType.value === 'text') {
       myinput.value.type = 'password'
     }
+    nowType.value = myinput.value.type
   }
 }
+//密码框切换图标
+const passwordIcon = computed(()=>{
+  return nowType.value === 'text'?View:Hide
+})
 //显示字数限制
 const blur = (): void => {
   myinput.value?.blur?.()
