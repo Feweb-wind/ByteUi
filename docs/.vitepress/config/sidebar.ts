@@ -14,7 +14,10 @@ export default {
                 { text: 'Slider 滑块', link: '/components/slider' },
                 { text: 'Rate 评分', link: '/components/rate' },
                 { text: 'Switch 开关', link: '/components/switch' },
-                { text: 'Input 输入框', link: '/components/input' }
+                { text: 'Input 输入框', link: '/components/input' },
+                { text: 'Radio 单选框', link: '/components/radio' },
+                { text: 'checkbox 多选框', link: '/components/checkbox' },
+                { text: 'popover ', link: '/components/popover' }
             ]
         },
         {
