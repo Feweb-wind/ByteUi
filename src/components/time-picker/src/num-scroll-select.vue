@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ByteScrollbar } from '@/components'
+// import { ByteScrollbar } from '@/components'
 import { useNamespace } from '@/hooks'
 import { debounce } from 'lodash'
 import { computed, onMounted, ref, watch } from 'vue'

@@ -8,7 +8,7 @@ import { ByteTooltip } from "@byte-ui/components";
 import { ByteSelect } from "@byte-ui/components";
 import { ByteOption } from "@byte-ui/components";
 import { ByteOptionGroup } from "@byte-ui/components";
-import { ByteScrollbar } from "@byte-ui/components";
+// import { ByteScrollbar } from "@byte-ui/components";
 import { ByteSlider } from "@byte-ui/components";
 import { Plugin } from "@vue/runtime-core";
 import { ByteRate } from "@byte-ui/components";
@@ -23,7 +23,7 @@ export default [
     ByteSelect,
     ByteOption,
     ByteOptionGroup,
-    ByteScrollbar,
+    // ByteScrollbar,
     ByteSlider,
     ByteRate
 ] as Plugin[];

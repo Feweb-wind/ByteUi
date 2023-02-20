@@ -49,7 +49,7 @@ export const sliderProps = {
     values: ['small', 'default', 'large'],
   },
   // inputSize: useSizeProp,
-  showStops:  {
+  showStops: {
     type: Boolean,
     default: false,
   },

@@ -15,6 +15,4 @@ export * from './slider'
 export * from './input'
 export * from './time-select'
 export * from './time-picker'
-export * from "./byte-tag";
-export * from "./byte-check-tag";
-export * from "./byte-rate"
+export * from "./rate"
