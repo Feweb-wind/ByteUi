@@ -17,12 +17,12 @@ import ReadComp from "../examples/rate/05-read.vue"
 ## 基础用法
 默认不区分颜色。使用`v-model`来动态绑定评分所绑定的值
 <CodePreview comp-name="rate" demo-name="01" demo-type="docs">
-    <BasicComp1/>
+    <BasicComp2/>
 </CodePreview>
 
 区分颜色。使用`color`来绑定颜色
 <CodePreview comp-name="rate" demo-name="01-2" demo-type="docs">
-    <BasicComp2/>
+    <BasicComp1/>
 </CodePreview>
 
 ## 辅助文字
