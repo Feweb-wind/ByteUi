@@ -12,6 +12,8 @@ import {
   ByteRate,
   ByteTag,
   ByteSlider,
+ByteSwitch,
+ByteInput,
 } from '@byte-ui/components'
 import { Plugin } from '@vue/runtime-core'
 export default [
@@ -27,5 +29,7 @@ export default [
   ByteOptionGroup,
   ByteScrollbar,
   ByteSlider,
-//   ByteRate,
+  ByteRate,
+  ByteSwitch,
+  ByteInput,
 ] as Plugin[]
