@@ -67,3 +67,19 @@ Input 为受控组件，它 总会显示 Vue 绑定值。
 <CodePreview comp-name="input" demo-name="07" demo-type="docs">
     <LimitComp/>
 </CodePreview>
+
+## Attributes
+|  参数    |   说明   |  	类型   |  默认值  |
+| ---- | ---- | ---- | ---- | 
+|type  | 类型 |  string |  text |
+| v-model | 绑定值 | string|  — |
+| maxlength | 最大输入长度 | string| — |
+| show-word-limit | 是否显示统计字数, 只在 type 为 'text' 或 'textarea' 的时候生效 |  boolean | false | 
+|placeholder  | 输入框占位文本  |   string |   —  | 
+|  clearable |  	是否显示清除按钮，只有当 type 不是 textarea时生效 |  boolean | 	false  | 
+|  formatter |  指定输入值的格式。(只有当 type 是"text"时才能工作) |  Function | — | 
+|show-password  | 是否显示切换密码图标  | boolean  |  false |  
+|  disabled |  是否禁用 | 	boolean  | false | 
+|size  | 输入框尺寸，只在 type 不为 'textarea' 时有效 |  |  | 
+| prefix-icon | 自定义前缀图标 | Component  |  | 
+| suffix-icon | 自定义后缀图标 | Component |  | 
