@@ -5,11 +5,11 @@ layout: doc
 ---
 
 <script setup>
-import BasicComp1 from "../examples/rate/01.vue";
-import BasicComp2 from "../examples/rate/01-2.vue";
-import TextComp from "../examples/rate/02.vue"
-import IconComp from "../examples/rate/03.vue"
-import ReadComp from "../examples/rate/04.vue"
+import BasicComp1 from "../examples/rate/01-basic1.vue";
+import BasicComp2 from "../examples/rate/02-basic2.vue";
+import TextComp from "../examples/rate/03-text.vue"
+import IconComp from "../examples/rate/04-icon.vue"
+import ReadComp from "../examples/rate/05-read.vue"
 </script>
 
 # Rate 评分

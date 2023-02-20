@@ -5,10 +5,11 @@ layout: doc
 ---
 
 <script setup>
-import BasicComp from "../examples/input/01.vue"
-import DisComp from "../examples/input/02.vue"
-import ClearComp from "../examples/input/03.vue"
-import PassWComp from "../examples/input/04.vue"
+import BasicComp from "../examples/input/01-basic.vue"
+import DisComp from "../examples/input/02-dis.vue"
+import ClearComp from "../examples/input/03-clear.vue"
+import PassWComp from "../examples/input/04-passw.vue"
+import IconComp from "../examples/input/05-icon.vue"
 </script>
 
 # Input 
@@ -43,4 +44,12 @@ Input 为受控组件，它 总会显示 Vue 绑定值。
 使用 `show-password` 属性即可得到一个可切换显示隐藏的密码框
 <CodePreview comp-name="input" demo-name="04" demo-type="docs">
     <PassWComp/>
+</CodePreview>
+
+## 带图标的输入框
+带有图标标记输入类型
+
+要在输入框中添加图标，你可以简单地使用 `prefix-icon` 和 `suffix-icon` 属性。 另外， `prefix` 和 `suffix` 命名的插槽也能正常工作。
+<CodePreview comp-name="input" demo-name="05" demo-type="docs">
+    <IconComp/>
 </CodePreview>
