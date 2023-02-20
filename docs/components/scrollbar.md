@@ -1,3 +1,4 @@
+scrollbar
 ---
 title: Scrollbar 滚动条
 lang: zh-CN
@@ -7,7 +8,7 @@ lang: zh-CN
 import BasicComp from "../examples/scrollbar/01_basic.vue";
 import ScrollHorizontal from "../examples/scrollbar/02_scroll_horizontal.vue";
 import MaxHeight from "../examples/scrollbar/03_max_height.vue";
-import ScrollByHand from "../examples/scrollbar/04_scroll_byhand.vue";
+// import ScrollByHand from "../examples/scrollbar/04_scroll_byhand.vue";
 </script>
 
 # Scrollbar 滚动条
@@ -17,7 +18,7 @@ import ScrollByHand from "../examples/scrollbar/04_scroll_byhand.vue";
 通过`height`属性设置滚动条高度，若不设置则根据父容器高度自适应。
 
 <CodePreview comp-name="scrollbar" demo-name="01_basic" demo-type="docs">
-<BasicComp/>
+    <BasicComp/>
 </CodePreview>
 
 ## 横向滑动

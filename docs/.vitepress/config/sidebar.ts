@@ -12,34 +12,25 @@ export default {
             items: [
                 { text: 'Select 选择器', link: '/components/select' },
                 { text: 'Slider 滑块', link: '/components/slider' },
-                { text: 'Button 按钮', link: '/components/button' },
-                { text: 'Border 边框', link: '/components/border' },
-                { text: 'Rate 评分', link: '/components/rates' }
+                { text: 'Rate 评分', link: '/components/rate' },
+                { text: 'Switch 开关', link: '/components/switch' }
             ]
         },
         {
             text: 'Data 数据展示',
             items: [
                 { text: 'Tag 标签', link: '/components/tag' },
-                { text: 'Button 按钮', link: '/components/button' },
-                { text: 'Tag 标签', link: '/components/tag' },
-                { text: 'Rate 评分', link: '/components/rate' },
             ]
         },
         {
             text: 'Navigation 导航',
             items: [
-                { text: 'Border 边框', link: '/components/border' },
-                { text: 'Button 按钮', link: '/components/button' },
-                { text: 'Border 边框', link: '/components/border' },
             ]
         },
         {
             text: 'Feedback 反馈组件',
             items: [
                 { text: 'Tooltip 文字提示', link: '/components/tooltip' },
-                { text: 'Button 按钮', link: '/components/button' },
-                { text: 'Border 边框', link: '/components/border' },
             ]
         },
         {

@@ -2,7 +2,7 @@
   <div>
     <ByteScrollbar ref="scrollbarRef"  height="300px" always @scroll="scroll">
       <div ref="innerRef">
-        <p v-for="item in 20" style="text-align: center;">{{ item }}新年快乐，兔年大吉！</p>
+        <p v-for="item in 20" style="text-align: center;" :key="item">{{ item }}新年快乐，兔年大吉！</p>
       </div>
     </ByteScrollbar>
     <div style="margin-top: 20px;">
