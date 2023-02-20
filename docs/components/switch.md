@@ -16,3 +16,4 @@ import BasicComp from "../examples/switch/01-basic.vue"
 <CodePreview comp-name="switch" demo-name="01" demo-type="docs">
     <BasicComp/>
 </CodePreview>
+
