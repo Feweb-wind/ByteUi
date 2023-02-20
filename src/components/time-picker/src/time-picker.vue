@@ -1,5 +1,5 @@
 <template>
-  <byte-popover trigger="focus" style="bottom: 6px" :teleported="teleported">
+  <byte-popover trigger="focus" style="bottom: 6px" :teleported="teleported" :class="popperClass">
     <template #reference>
       <range-input
         v-if="isRange"

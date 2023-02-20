@@ -54,9 +54,7 @@ const currentValue = computed({
 })
 
 // 监控modelValue及时更改转盘的显示
-watch(currentValue, (val, oldVal) => {
-  scrollbarRef.value?.setScrollTop(val * 32)
-})
+watch(currentValue, (val, oldVal) => scrollToAble(val))
 
 // 在创建时正确显示
 onMounted(() => {
@@ -73,9 +71,15 @@ const able = computed(() => {
 })
 
 // 滚动时（防抖动）
-const scroll = debounce(({ scrollTop }: { scrollTop: number }) => {
+const scroll = ({ scrollTop }: { scrollTop: number }) => {
   const targetValue = findClosest(able.value, scrollTop / 32)
   currentValue.value = targetValue
+  if (props.disabled.includes(Math.round(scrollTop / 32))) {
+    scrollToAble(targetValue)
+  }
+}
+
+const scrollToAble = debounce(targetValue => {
   scrollbarRef.value?.setScrollTop(targetValue * 32)
 }, 100)
 
