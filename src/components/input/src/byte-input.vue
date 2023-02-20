@@ -107,6 +107,7 @@ const emit = defineEmits<{
   (e: 'blur', event: FocusEvent): void
   (e: 'focus', event: FocusEvent): void
   (e: 'change', event: Event): void
+  (e: 'input', event: Event): void
 }>()
 //实现双向绑定
 const updateModelValue = (e: Event) => {
@@ -114,6 +115,7 @@ const updateModelValue = (e: Event) => {
   if (target !== null) {
     emit('update:modelValue', (target as HTMLInputElement).value)
   }
+  emit('input', e)
 }
 //判断后置图标是否显示
 const suffix = computed(() => {
@@ -163,81 +165,5 @@ defineExpose({
 </script>
 
 <style lang="less">
-.byte-input {
-  width: 180px;
-  height: 40px;
-  //大小 large / default / small
-  &.input-large {
-    height: 40px;
-  }
-  &.input-default {
-    height: 32px;
-  }
-  &.input-small {
-    height: 24px;
-  }
-  .inner-input {
-    display: flex;
-    position: relative;
-    height: 100%;
-    .prefix-icon,
-    .suffix-icon {
-      position: absolute;
-      height: 100%;
-      top: 0;
-      text-align: center;
-      color: #c0c4cc;
-      transition: all 0.3s;
-      pointer-events: auto;
-      cursor: pointer;
-      //以下代码测试用
-      display: flex;
-      align-items: center;
-      z-index: 10;
-    }
-    .prefix-icon {
-      left: 5px;
-    }
-    .suffix-icon {
-      right: 5px;
-    }
-    input {
-      cursor: pointer;
-      background-color: #fff;
-      background-image: none;
-      border-radius: 4px;
-      border: 1px solid #dcdfe6;
-      box-sizing: border-box;
-      color: #606266;
-      display: inline-block;
-      font-size: inherit;
-      height: 100%;
-      line-height: 100%;
-      outline: none;
-      padding: 0 15px;
-      transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-      width: 100%;
-      pointer-event: auto;
-      //选中焦点边框样式
-      &:focus {
-        outline: none;
-        border-color: #409eff;
-      }
-    }
-    //有prefixicon时input要做出的调整
-    .pre-inp {
-      padding-left: 30px;
-    }
-    //有suffixicon时input要做出的调整
-    .suf-inp {
-      padding-right: 30px;
-    }
-    .is-disabled {
-      background-color: #f5f7fa;
-      border-color: #e4e7ed;
-      color: #c0c4cc;
-      cursor: not-allowed;
-    }
-  }
-}
+@import '../style/byte-input.less';
 </style>

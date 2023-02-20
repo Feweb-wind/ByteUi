@@ -1,17 +1,29 @@
 <template>
   <byte-popover trigger="focus" style="bottom: 6px" :teleported="teleported">
     <template #reference>
-      <byte-input
-        ref="timePickerInput"
-        v-model="dateInputValue"
+      <range-input
+        v-if="isRange"
+        v-model="(date as [Date,Date])"
         :name="name"
-        :prefix-icon="Clock"
-        :disabled="disabled"
-        :placeholder="placeholder"
+        :mode="mode"
+        :format="format"
+        :prefix-icon="prefixIcon"
         :clearable="clearable"
-        :suffix-icon="clearIcon"
-        @focus="handleFocus"
-        @change="change"
+        :clear-icon="clearIcon"
+        :range-separator="rangeSeparator"
+      />
+      <date-editor
+        v-else
+        ref="timePickerInputRef"
+        v-model="(date as Date)"
+        :mode="mode"
+        :format="format"
+        :name="name"
+        :placeholder="placeholder"
+        :prefix-icon="prefixIcon"
+        :clearable="clearable"
+        :clear-icon="clearIcon"
+        :disabled="disabled"
       />
     </template>
     <time-panel
@@ -35,8 +47,9 @@
 <script lang="ts" setup>
 import { ByteInput, BytePopover } from '@byte-ui/components'
 import TimePanel from './time-panel.vue'
-import { Clock } from '@element-plus/icons-vue'
-import { computed, ref, watch } from 'vue'
+import RangeInput from './range-input.vue'
+import DateEditor from './date-editor.vue'
+import { computed, ref } from 'vue'
 import { timePickerProps } from './time-picker'
 import type { ModelValueType } from './time-picker'
 import dayjs from 'dayjs'
@@ -52,8 +65,11 @@ const mode = ref<
 const date = computed({
   get: () => {
     if (!props.modelValue) {
+      if (props.defaultValue) emits('update:modelValue', props.defaultValue)
       mode.value = props.isRange ? 'range&date' : 'date'
-      return props.isRange ? [new Date(), new Date()] : undefined
+      return props.isRange
+        ? ([new Date(), new Date()] as [Date, Date])
+        : undefined
     } else if (props.modelValue instanceof Date) {
       mode.value = 'date'
       return props.modelValue
@@ -69,7 +85,7 @@ const date = computed({
         props.modelValue[1] instanceof Date
       ) {
         mode.value = 'range&date'
-        return [props.modelValue[0], props.modelValue[1]]
+        return [props.modelValue[0], props.modelValue[1]] as [Date, Date]
       } else if (
         typeof props.modelValue[0] === 'string' &&
         typeof props.modelValue[1] === 'string'
@@ -78,13 +94,13 @@ const date = computed({
         return [
           dayjs(props.modelValue[0], props.format).toDate(),
           dayjs(props.modelValue[1], props.format).toDate(),
-        ]
+        ] as [Date, Date]
       } else if (typeof props.modelValue[0] === 'number') {
         mode.value = 'range&number'
         return [
           dayjs(props.modelValue[0]).toDate(),
           dayjs(props.modelValue[1]).toDate(),
-        ]
+        ] as [Date, Date]
       }
     }
   },
@@ -129,45 +145,17 @@ const date = computed({
   },
 })
 
-const dateInputValue = ref(
-  date.value instanceof Date ? dayjs(date.value).format(props.format) : ''
-)
-
-watch(date, (val, oldVal) => {
-  dateInputValue.value = val instanceof Date ? dayjs(val).format(props.format) : ''
-})
-
-const temp = ref<Date | Date[]>()
-
-const change = (): void => {
-  const inputParse = dayjs(dateInputValue.value, props.format, true)
-  if (inputParse.isValid()) {
-    let newVal
-    switch (mode.value) {
-      case 'date':
-        newVal = inputParse.toDate()
-        break
-      case 'string':
-        newVal = inputParse.format(props.format)
-        break
-      case 'number':
-        newVal = inputParse.valueOf()
-        break
-      default:
-        break
-    }
-    emits('update:modelValue', newVal)
-  } else {
-    dateInputValue.value =
-      date.value instanceof Date ? dayjs(date.value).format(props.format) : ''
-  }
-}
+const temp = ref<Date | [Date, Date]>()
 
 const handleFocus = (): void => {
   if (!props.modelValue) {
     date.value = new Date()
   }
   temp.value = date.value
+}
+
+const clear = (): void => {
+  emits('update:modelValue', props.defaultValue)
 }
 
 const focus = (): void => {

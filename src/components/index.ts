@@ -11,7 +11,7 @@ export * from './checkbox'
 export * from './popover'
 export * from './radio'
 export * from './slider'
-// export * from "./scrollbar";
+export * from "./scrollbar";
 export * from './input'
 export * from './time-select'
 export * from './time-picker'

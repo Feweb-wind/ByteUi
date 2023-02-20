@@ -14,6 +14,7 @@
     :auto-close="autoClose"
     :trigger="trigger"
     :visible="visible"
+    :teleported="teleported"
   >
     <template v-if="$slots.reference">
       <slot name="reference" />

@@ -3,14 +3,33 @@
     <div :class="ns.e('range')" v-if="props.isRange">
       <div :class="ns.e('range__cell')">
         <div :class="ns.e('range__header')">{{ startPlaceholder }}</div>
-        <time-spinner v-model="startTime" :arrow-control="arrowControl" />
+        <time-spinner
+          v-model="startTime"
+          :arrow-control="arrowControl"
+          :disabled-hours="startTimeDisabledHours"
+          :disabled-minutes="startTimeDisabledMinutes"
+          :disabled-seconds="startTimeDisabledSeconds"
+        />
       </div>
       <div :class="ns.e('range__cell')">
         <div :class="ns.e('range__header')">{{ endPlaceholder }}</div>
-        <time-spinner v-model="endTime" :arrow-control="arrowControl" />
+        <time-spinner
+          v-model="endTime"
+          :arrow-control="arrowControl"
+          :disabled-hours="endTimeDisabledHours"
+          :disabled-minutes="endTimeDisabledMinutes"
+          :disabled-seconds="endTimeDisabledSeconds"
+        />
       </div>
     </div>
-    <time-spinner v-model="date" :arrow-control="arrowControl" v-else />
+    <time-spinner
+      v-model="date"
+      :arrow-control="arrowControl"
+      :disabled-hours="defaultDisabledHours"
+      :disabled-minutes="defaultDisabledMinutes"
+      :disabled-seconds="defaultDisabledSeconds"
+      v-else
+    />
   </div>
   <div :class="ns.e('footer')">
     <button :class="[ns.e('btn'), 'cancel']" @click="emits('canel')">
@@ -31,7 +50,7 @@ import { computed, PropType } from 'vue'
 const ns = useNamespace('time-panel')
 const props = defineProps({
   ...timePickerProps,
-  modelValue: [Object, Array] as PropType<Date | Date[]>,
+  modelValue: [Object, Array] as PropType<Date | [Date, Date]>,
 })
 const emits = defineEmits(['update:modelValue', 'confirm', 'canel'])
 
@@ -56,6 +75,104 @@ const endTime = computed({
     props.modelValue instanceof Array
       ? emits('update:modelValue', [props.modelValue[0], val])
       : null,
+})
+
+// 默认不可选
+const defaultDisabledHours = computed(() => props.disabledHours?.())
+const defaultDisabledMinutes = computed(() =>
+  props.disabledMinutes?.(
+    props.modelValue instanceof Date
+      ? props.modelValue.getHours()
+      : new Date().getHours()
+  )
+)
+const defaultDisabledSeconds = computed(() =>
+  props.modelValue instanceof Date
+    ? props.disabledSeconds?.(
+        props.modelValue.getHours(),
+        props.modelValue.getMinutes()
+      )
+    : props.disabledSeconds?.(new Date().getHours(), new Date().getMinutes())
+)
+
+const startTimeDisabledHours = computed(() => {
+  if (props.modelValue instanceof Array) {
+    let lessHours: number[] = []
+    for (let index = endTime.value!.getHours() + 1; index < 24; index++) {
+      if (!defaultDisabledHours.value?.includes(index)) {
+        lessHours.push(index)
+      }
+    }
+    return lessHours.concat(
+      defaultDisabledHours.value ? defaultDisabledHours.value : []
+    )
+  }
+})
+const startTimeDisabledMinutes = computed(() => {
+  if (props.modelValue instanceof Array) {
+    let lessMinutes: number[] = []
+    for (let index = endTime.value!.getMinutes() + 1; index < 60; index++) {
+      if (!defaultDisabledMinutes.value?.includes(index)) {
+        lessMinutes.push(index)
+      }
+    }
+    return lessMinutes.concat(
+      defaultDisabledMinutes.value ? defaultDisabledMinutes.value : []
+    )
+  }
+})
+const startTimeDisabledSeconds = computed(() => {
+  if (props.modelValue instanceof Array) {
+    let lessSeconds: number[] = []
+    for (let index = endTime.value!.getSeconds() + 1; index < 60; index++) {
+      if (!defaultDisabledSeconds.value?.includes(index)) {
+        lessSeconds.push(index)
+      }
+    }
+    return lessSeconds.concat(
+      defaultDisabledSeconds.value ? defaultDisabledSeconds.value : []
+    )
+  }
+})
+
+const endTimeDisabledHours = computed(() => {
+  if (props.modelValue instanceof Array) {
+    let moreHours: number[] = []
+    for (let index = startTime.value!.getHours() - 1; index >= 0; index--) {
+      if (!defaultDisabledHours.value?.includes(index)) {
+        moreHours.push(index)
+      }
+    }
+    return moreHours.concat(
+      defaultDisabledHours.value ? defaultDisabledHours.value : []
+    )
+  }
+})
+const endTimeDisabledMinutes = computed(() => {
+  if (props.modelValue instanceof Array) {
+    let moreMinutes: number[] = []
+    for (let index = startTime.value!.getMinutes() - 1; index >= 0; index--) {
+      if (!defaultDisabledMinutes.value?.includes(index)) {
+        moreMinutes.push(index)
+      }
+    }
+    return moreMinutes.concat(
+      defaultDisabledMinutes.value ? defaultDisabledMinutes.value : []
+    )
+  }
+})
+const endTimeDisabledSeconds = computed(() => {
+  if (props.modelValue instanceof Array) {
+    let moreSeconds: number[] = []
+    for (let index = startTime.value!.getSeconds() - 1; index >= 0; index--) {
+      if (!defaultDisabledSeconds.value?.includes(index)) {
+        moreSeconds.push(index)
+      }
+    }
+    return moreSeconds.concat(
+      defaultDisabledSeconds.value ? defaultDisabledSeconds.value : []
+    )
+  }
 })
 </script>
 

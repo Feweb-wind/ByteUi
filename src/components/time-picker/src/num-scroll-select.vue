@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-// import { ByteScrollbar } from '@/components'
+import { ByteScrollbar } from '@/components'
 import { useNamespace } from '@/hooks'
 import { debounce } from 'lodash'
 import { computed, onMounted, ref, watch } from 'vue'
@@ -74,20 +74,9 @@ const able = computed(() => {
 
 // 滚动时（防抖动）
 const scroll = debounce(({ scrollTop }: { scrollTop: number }) => {
-  let targetValue: number
-  if (scrollTop % 32 !== 0) {
-    let target =
-      scrollTop % 32 < 16
-        ? scrollTop - (scrollTop % 32)
-        : scrollTop + 32 - (scrollTop % 32)
-    targetValue = target / 32
-  } else {
-    targetValue = scrollTop / 32
-  }
-  if (targetValue !== currentValue.value)
-    currentValue.value = props.disabled.includes(targetValue)
-      ? findClosest(able.value, targetValue)
-      : targetValue
+  const targetValue = findClosest(able.value, scrollTop / 32)
+  currentValue.value = targetValue
+  scrollbarRef.value?.setScrollTop(targetValue * 32)
 }, 100)
 
 // 当选择了一个disabled的数字时，选择距离最近的可用数字
