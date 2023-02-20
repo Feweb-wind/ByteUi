@@ -5,10 +5,13 @@ layout: doc
 ---
 
 <script setup>
-import BasicComp from "../examples/input/01.vue"
-import DisComp from "../examples/input/02.vue"
-import ClearComp from "../examples/input/03.vue"
-import PassWComp from "../examples/input/04.vue"
+import BasicComp from "../examples/input/01-basic.vue"
+import DisComp from "../examples/input/02-dis.vue"
+import ClearComp from "../examples/input/03-clear.vue"
+import PassWComp from "../examples/input/04-passw.vue"
+import IconComp from "../examples/input/05-icon.vue"
+import SizeComp from "../examples/input/06-size.vue"
+import LimitComp from "../examples/input/07-limit.vue"
 </script>
 
 # Input 
@@ -44,3 +47,39 @@ Input 为受控组件，它 总会显示 Vue 绑定值。
 <CodePreview comp-name="input" demo-name="04" demo-type="docs">
     <PassWComp/>
 </CodePreview>
+
+## 带图标的输入框
+带有图标标记输入类型
+
+要在输入框中添加图标，你可以简单地使用 `prefix-icon` 和 `suffix-icon` 属性。 另外， `prefix` 和 `suffix` 命名的插槽也能正常工作。
+<CodePreview comp-name="input" demo-name="05" demo-type="docs">
+    <IconComp/>
+</CodePreview>
+
+## 尺寸
+使用 `size` 属性改变输入框大小。 除了默认大小外，还有另外两个选项： `small`, `mini`
+<!-- <CodePreview comp-name="input" demo-name="06" demo-type="docs">
+    <SizeComp/>
+</CodePreview> -->
+
+## 输入长度限制
+使用 `maxlength` 和 `minlength `属性, 来控制输入内容的最大字数和最小字数。 "字符数"使用JavaScript字符串长度来衡量。 为文本或文本输入类型设置 `maxlength` prop可以限制输入值的长度。 允许你通过设置 `show-word-limit` 到 `true` 来显示剩余字数。
+<CodePreview comp-name="input" demo-name="07" demo-type="docs">
+    <LimitComp/>
+</CodePreview>
+
+## Attributes
+|  参数    |   说明   |  	类型   |  默认值  |
+| ---- | ---- | ---- | ---- | 
+|type  | 类型 |  string |  text |
+| v-model | 绑定值 | string|  — |
+| maxlength | 最大输入长度 | string| — |
+| show-word-limit | 是否显示统计字数, 只在 type 为 'text' 或 'textarea' 的时候生效 |  boolean | false | 
+|placeholder  | 输入框占位文本  |   string |   —  | 
+|  clearable |  	是否显示清除按钮，只有当 type 不是 textarea时生效 |  boolean | 	false  | 
+|  formatter |  指定输入值的格式。(只有当 type 是"text"时才能工作) |  Function | — | 
+|show-password  | 是否显示切换密码图标  | boolean  |  false |  
+|  disabled |  是否禁用 | 	boolean  | false | 
+|size  | 输入框尺寸，只在 type 不为 'textarea' 时有效 |  |  | 
+| prefix-icon | 自定义前缀图标 | Component  |  | 
+| suffix-icon | 自定义后缀图标 | Component |  | 

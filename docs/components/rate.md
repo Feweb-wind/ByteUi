@@ -5,11 +5,11 @@ layout: doc
 ---
 
 <script setup>
-import BasicComp1 from "../examples/rate/01.vue";
-import BasicComp2 from "../examples/rate/01-2.vue";
-import TextComp from "../examples/rate/02.vue"
-import IconComp from "../examples/rate/03.vue"
-import ReadComp from "../examples/rate/04.vue"
+import BasicComp1 from "../examples/rate/01-basic1.vue";
+import BasicComp2 from "../examples/rate/02-basic2.vue";
+import TextComp from "../examples/rate/03-text.vue"
+import IconComp from "../examples/rate/04-icon.vue"
+import ReadComp from "../examples/rate/05-read.vue"
 </script>
 
 # Rate 评分
@@ -17,12 +17,12 @@ import ReadComp from "../examples/rate/04.vue"
 ## 基础用法
 默认不区分颜色。使用`v-model`来动态绑定评分所绑定的值
 <CodePreview comp-name="rate" demo-name="01" demo-type="docs">
-    <BasicComp1/>
+    <BasicComp2/>
 </CodePreview>
 
 区分颜色。使用`color`来绑定颜色
 <CodePreview comp-name="rate" demo-name="01-2" demo-type="docs">
-    <BasicComp2/>
+    <BasicComp1/>
 </CodePreview>
 
 ## 辅助文字

@@ -44,6 +44,11 @@
           <template v-if="showWordLimit && maxlength">
             <span>{{ modelValue.toString().length }} / {{ maxlength }}</span>
           </template>
+          <template v-if="suffixIcon">
+            <byte-icon class="suffix-icon">
+              <component :is="suffixIcon" />
+            </byte-icon>
+          </template>
         </span>
       </div>
     </template>

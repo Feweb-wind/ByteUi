@@ -6,7 +6,7 @@ layout: doc
 
 
 <script setup>
-import BasicComp from "../examples/switch/01.vue"
+import BasicComp from "../examples/switch/01-basic.vue"
 </script>
 
 # Switch 开关
@@ -16,3 +16,4 @@ import BasicComp from "../examples/switch/01.vue"
 <CodePreview comp-name="switch" demo-name="01" demo-type="docs">
     <BasicComp/>
 </CodePreview>
+
