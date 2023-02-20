@@ -13,7 +13,8 @@ export default {
                 { text: 'Select 选择器', link: '/components/select' },
                 { text: 'Slider 滑块', link: '/components/slider' },
                 { text: 'Rate 评分', link: '/components/rate' },
-                { text: 'Switch 开关', link: '/components/switch' }
+                { text: 'Switch 开关', link: '/components/switch' },
+                { text: 'Input 输入框', link: '/components/input' }
             ]
         },
         {
