@@ -21,7 +21,9 @@ import ShowVertical from "../examples/slider/05_vertical.vue";
 - 通过设置绑定值自定义滑块的初始值
 
 <CodePreview comp-name="slider" demo-name="01_basic" demo-type="docs">
+<ClientOnly>
 <BasicComp/>
+</ClientOnly>
 </CodePreview>
 
 
@@ -30,14 +32,18 @@ import ShowVertical from "../examples/slider/05_vertical.vue";
 - 改变step的值可以改变步长， 通过设置 show-stops 属性可以显示间断点
 
 <CodePreview comp-name="slider" demo-name="02_dispersed_value" demo-type="docs">
+<ClientOnly>
 <DispersedValue/>
+</ClientOnly>
 </CodePreview>
 
 
 ## 不同尺寸
 
 <CodePreview comp-name="slider" demo-name="03_size" demo-type="docs">
+<ClientOnly>
 <DifferentSize/>
+</ClientOnly>
 </CodePreview>
 
 
@@ -45,7 +51,9 @@ import ShowVertical from "../examples/slider/05_vertical.vue";
 您可以自定义 Tooltip 提示的位置。
 
 <CodePreview comp-name="slider" demo-name="04_position" demo-type="docs">
+<ClientOnly>
 <PositionTooltip/>
+</ClientOnly>
 </CodePreview>
 
 
@@ -53,7 +61,9 @@ import ShowVertical from "../examples/slider/05_vertical.vue";
 配置 vertical 属性为 true 启用垂直模式。 在垂直模式下，必须设置 height 属性。
 
 <CodePreview comp-name="slider" demo-name="05_vertical" demo-type="docs">
+<ClientOnly>
 <ShowVertical/>
+</ClientOnly>
 </CodePreview>
 
 

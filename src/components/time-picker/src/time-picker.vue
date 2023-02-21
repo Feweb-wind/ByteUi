@@ -8,7 +8,7 @@
     <template #reference>
       <range-input
         v-if="isRange"
-        v-model="(date as [Date,Date])"
+        v-model="date"
         :name="name"
         :mode="mode"
         :format="format"
@@ -20,7 +20,7 @@
       <date-editor
         v-else
         ref="timePickerInputRef"
-        v-model="(date as Date)"
+        v-model="date"
         :mode="mode"
         :format="format"
         :name="name"

@@ -24,7 +24,7 @@
 <script lang="ts" setup>
 import { ByteScrollbar } from '@/components'
 import { useNamespace } from '@/hooks'
-import { debounce } from 'lodash'
+import { debounce } from 'lodash-es'
 import { computed, onMounted, ref, watch } from 'vue'
 
 const ns = useNamespace('time-spinner')
