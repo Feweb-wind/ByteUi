@@ -1,12 +1,13 @@
 import CodePreview from '../../../src/components/CodePreview/index.vue'
 import DefaultTheme from 'vitepress/theme'
-import { App } from 'vue'
 import ByteUI from 'byte-ui'
+import { EnhanceAppContext } from 'vitepress'
 
 export default {
   ...DefaultTheme,
-  enhanceApp: async ({ app }: { app: App }) => {
-    app.use(ByteUI)
-    app.component('CodePreview', CodePreview)
+  enhanceApp(ctx: EnhanceAppContext) {
+    DefaultTheme.enhanceApp(ctx)
+    ctx.app.use(ByteUI)
+    ctx.app.component('CodePreview', CodePreview)
   },
 }
